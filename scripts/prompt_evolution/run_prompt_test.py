@@ -87,7 +87,11 @@ def _run_single_test_worker(args: tuple) -> dict:
 
     This runs in a separate process with its own environment.
     """
-    dataset, prompt, prompt_id, batch_size, model_name = args
+    dataset, prompt, prompt_id, batch_size, model_name, gpu_id = args
+
+    # Pin this worker to a specific GPU (if assigned)
+    if gpu_id is not None:
+        os.environ["CUDA_VISIBLE_DEVICES"] = str(gpu_id)
 
     # Set environment variables for this process
     os.environ["PROMPT_TEST_DATASET"] = dataset
@@ -190,9 +194,10 @@ def run_single_test(
     prompt_id: str,
     batch_size: int = 1000,
     model_name: str = "voyageai/voyage-4-large-prompt-test",
+    gpu_id: int | None = None,
 ) -> dict:
     """Run a single mteb test with a specific prompt using Python API."""
-    return _run_single_test_worker((dataset, prompt, prompt_id, batch_size, model_name))
+    return _run_single_test_worker((dataset, prompt, prompt_id, batch_size, model_name, gpu_id))
 
 
 def log_result(result: dict):
@@ -247,13 +252,15 @@ def run_tests_parallel(
     batch_size: int = 1000,
     workers: int = 3,
     model_name: str = "voyageai/voyage-4-large-prompt-test",
+    num_gpus: int | None = None,
 ) -> list[dict]:
     """Run tests in parallel using multiple worker processes."""
     results = []
 
-    # Prepare work items
+    # Prepare work items, assigning GPUs round-robin if specified
     work_items = [
-        (dataset, prompt, prompt_id, batch_size, model_name) for prompt_id, prompt in prompts
+        (dataset, prompt, prompt_id, batch_size, model_name, i % num_gpus if num_gpus else None)
+        for i, (prompt_id, prompt) in enumerate(prompts)
     ]
 
     print(f"Starting {workers} workers for {len(work_items)} prompts...")
@@ -320,6 +327,12 @@ def main():
         help="Model to test (default: voyageai/voyage-4-large-prompt-test)",
     )
     parser.add_argument(
+        "--gpus",
+        type=int,
+        default=None,
+        help="Number of GPUs to distribute workers across (round-robin assignment)",
+    )
+    parser.add_argument(
         "--list", action="store_true", help="List available prompts and exit"
     )
     args = parser.parse_args()
@@ -366,7 +379,7 @@ def main():
 
     if args.workers > 1:
         results = run_tests_parallel(
-            args.dataset, prompt_tuples, args.batch_size, args.workers, args.model
+            args.dataset, prompt_tuples, args.batch_size, args.workers, args.model, args.gpus
         )
     else:
         results = run_tests_sequential(args.dataset, prompt_tuples, args.batch_size, args.model)
