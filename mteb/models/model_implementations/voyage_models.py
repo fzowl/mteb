@@ -109,7 +109,7 @@ VOYAGE_DTYPE_TRANSLATION = {
 
 # Total token limits per model based on VoyageAI documentation
 VOYAGE_TOTAL_TOKEN_LIMITS = {
-    "voyage-4-large": 120_000,
+    "voyage-4-large": 115_000,
     "voyage-4": 320_000,
     "voyage-4-lite": 1_000_000,
     "voyage-3.5-lite": 1_000_000,
@@ -196,6 +196,7 @@ class VoyageModel(AbsEncoder):
         max_tokens: int | None = None,
         model_prompts: dict[str, str] | None = None,
         output_dtype: str | None = None,
+        api_model_name: str | None = None,
         **kwargs,
     ) -> None:
         import voyageai
@@ -203,7 +204,10 @@ class VoyageModel(AbsEncoder):
         self._client = voyageai.Client(max_retries=max_retries)
         self._embed_func = rate_limit(max_rpm)(token_limit(max_tpm)(self._client.embed))
 
-        self._model_name = model_name.split("/")[-1].split()[0]  # noqa: PLC0207
+        if api_model_name:
+            self._model_name = api_model_name
+        else:
+            self._model_name = model_name.split("/")[-1].split()[0]
         self._max_tpm = max_tpm
         self._max_tokens = max_tokens
         self.model_prompts = self.validate_task_to_prompt_name(model_prompts)
@@ -294,6 +298,94 @@ class VoyageModel(AbsEncoder):
         return embeddings_array
 
 
+class VoyagePromptTestModel(VoyageModel):
+    """VoyageModel variant that reads query prompt from environment variable.
+
+    This is used for prompt evolution experiments where we test different
+    query prompts without modifying model configuration.
+
+    Environment variables:
+        PROMPT_TEST_PROMPT: The prompt to prepend to queries (can be empty)
+    """
+
+    def encode(
+        self,
+        inputs: DataLoader[BatchedInput],
+        *,
+        task_metadata: TaskMetadata,
+        hf_split: str,
+        hf_subset: str,
+        prompt_type: PromptType | None = None,
+        batch_size: int = 1_000,
+        **kwargs: Any,
+    ) -> Array:
+        import os
+
+        prompt_name = self.get_prompt_name(task_metadata, prompt_type)
+        input_type = self.model_prompts.get(prompt_name, "document")
+
+        sentences = [text for batch in inputs for text in batch["text"]]
+
+        # For queries, prepend the prompt from environment variable
+        if input_type == "query":
+            test_prompt = os.environ.get("PROMPT_TEST_PROMPT", "")
+            if test_prompt:
+                sentences = [f"{test_prompt} {s}" for s in sentences]
+
+        return self._batched_encode(sentences, batch_size, input_type)
+
+
+# Best prompts discovered through prompt evolution experiments
+EVOLVED_BEST_PROMPTS = {
+    # Gen9 results - updated 2026-01-20
+    "AILACasedocs": "Court request:",  # Short prompt beats baseline! (47.79% vs 47.49%)
+    "AILAStatutes": "Instruct: Match context with the best-fitting legal statute provisions\nQuery: ",  # 56.26% vs 54.35%
+    "ChatDoctorRetrieval": "Clarify medically with comprehensive, effective responses",  # 77.39% vs 77.20%
+    "DS1000Retrieval": "Instruct: Efficiently fetch Python data scripts using numpy\nQuery: ",  # 71.28% vs 71.19%
+    "FinQARetrieval": "",  # baseline is better (88.99%)
+    "FinanceBenchRetrieval": "Gather directly applicable financial data from key SEC documents\nQuery: ",  # 93.95% vs 93.16%
+    "FreshStackRetrieval": "",  # baseline is better (50.79%)
+    "HC3FinanceRetrieval": "Find finance Q&A providing complete and relevant answers\nQuery: ",  # 78.73% vs 76.83%
+    "HumanEvalRetrieval": "Return the easiest Python function solving the problem",  # 100%! vs 99.36%
+    "LegalQuAD": "Surface directly applicable legal content",  # 75.80% vs 74.63%
+    "LegalSummarization": "Collect legal documents ensuring broad summarization coverage\nQuery: ",  # 79.29% vs 78.09%
+    "WikiSQLRetrieval": "Uncover SQL query precisely tailored to inquiry",  # 99.04% vs 96.70%
+}
+
+
+class VoyageEvolvedPromptsModel(VoyageModel):
+    """VoyageModel variant that uses evolved best prompts per dataset.
+
+    This model applies dataset-specific query prompts that were discovered
+    through prompt evolution experiments to maximize retrieval performance.
+    """
+
+    def encode(
+        self,
+        inputs: DataLoader[BatchedInput],
+        *,
+        task_metadata: TaskMetadata,
+        hf_split: str,
+        hf_subset: str,
+        prompt_type: PromptType | None = None,
+        batch_size: int = 1_000,
+        **kwargs: Any,
+    ) -> Array:
+        prompt_name = self.get_prompt_name(task_metadata, prompt_type)
+        input_type = self.model_prompts.get(prompt_name, "document")
+
+        sentences = [text for batch in inputs for text in batch["text"]]
+
+        # For queries, prepend the evolved best prompt for this dataset
+        if input_type == "query":
+            dataset_name = task_metadata.name
+            best_prompt = EVOLVED_BEST_PROMPTS.get(dataset_name, "")
+            if best_prompt:
+                sentences = [f"{best_prompt} {s}" for s in sentences]
+
+        return self._batched_encode(sentences, batch_size, input_type)
+
+
 model_prompts = {
     PromptType.query.value: "query",
     PromptType.document.value: "document",
@@ -325,6 +417,35 @@ voyage_4_large_2048d = ModelMeta(
     public_training_data=None,
     output_dtypes=OUTPUT_TYPES,
     extra_requirements_groups=["voyageai"],
+)
+
+# Special model for prompt evolution experiments - uses VoyagePromptTestModel
+# which reads query prompt from PROMPT_TEST_PROMPT environment variable
+voyage_4_large_prompt_test = ModelMeta(
+    name="voyageai/voyage-4-large-prompt-test",
+    model_type=["dense"],
+    revision="1",
+    release_date="2026-01-15",
+    languages=None,
+    loader=VoyagePromptTestModel,
+    loader_kwargs=dict(
+        max_tokens=32000,
+        model_prompts=model_prompts,
+        api_model_name="voyage-4-large",  # Use voyage-4-large API
+    ),
+    max_tokens=32000,
+    embed_dim=1024,
+    open_weights=False,
+    n_parameters=None,
+    memory_usage_mb=None,
+    license=None,
+    reference="https://blog.voyageai.com/2026/01/15/voyage-4/",
+    similarity_fn_name="cosine",
+    framework=["API"],
+    use_instructions=True,
+    training_datasets=VOYAGE_TRAINING_DATA,
+    public_training_code=None,
+    public_training_data=None,
 )
 
 voyage_4 = ModelMeta(

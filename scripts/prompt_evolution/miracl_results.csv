@@ -1,0 +1,350 @@
+generation,prompt_id,score,prompt
+gen0,gen0_00,0.8678333333333331,
+gen0,gen0_03,0.8668950000000001,Search for relevant information
+gen0,gen0_08,0.8656261111111113,Information retrieval:
+gen0,gen0_10,0.8654794444444444,Search for matching documents
+gen0,gen0_06,0.8654677777777777,Find relevant documents
+gen0,gen0_05,0.8653088888888889,Search:
+gen0,gen0_19,0.8652994444444445,Document retrieval:
+gen0,gen0_04,0.8647461111111112,Query:
+gen0,gen0_15,0.8645094444444443,Match query to relevant documents
+gen0,gen0_14,0.8642866666666668,Retrieve:
+gen0,gen0_02,0.8641777777777778,Retrieve documents matching the query
+gen0,gen0_11,0.8638144444444443,Document search:
+gen0,gen0_17,0.863728888888889,Retrieve relevant passages from documents
+gen0,gen0_23,0.8636283333333333,Knowledge retrieval:
+gen0,gen0_24,0.8635649999999999,Answer query:
+gen0,gen0_13,0.8632944444444447,Find:
+gen0,gen0_01,0.8632438888888889,Find relevant passages
+gen0,gen0_16,0.8627883333333334,Find information matching the question
+gen0,gen0_07,0.8626655555555556,Retrieve matching passages
+gen0,gen0_18,0.8626044444444445,Search knowledge base
+gen0,gen0_22,0.8618983333333331,Relevant information:
+gen0,gen0_09,0.8576761111111113,Find passages answering the question
+gen0,gen0_20,0.8575222222222222,Find passages containing the answer
+gen0,gen0_21,0.8555716666666666,Passage search:
+gen0,gen0_12,0.8537000000000001,"Instruct: Find relevant passages
+Query: "
+gen0,gen0_00,0,
+gen0,gen0_01,0,Find relevant passages
+gen0,gen0_02,0,Retrieve documents matching the query
+gen0,gen0_03,0,Search for relevant information
+gen0,gen0_04,0,Query:
+gen1,gen1_00,0.8678333333333331,
+gen1,gen1_04,0.8671516666666668,-
+gen1,gen1_03,0.8663138888888889,>
+gen1,gen1_01,0.8651666666666668,:
+gen1,gen1_05,0.8648777777777776,Q:
+gen1,gen1_13,0.8645822222222221,Q
+gen1,gen1_14,0.8639961111111112,S
+gen1,gen1_12,0.8633983333333333,get
+gen1,gen1_10,0.8632716666666665,search
+gen1,gen1_07,0.8632466666666666,->
+gen1,gen1_08,0.8626583333333335,>>
+gen1,gen1_11,0.8625055555555555,find
+gen1,gen1_15,0.8623716666666666,F
+gen1,gen1_09,0.8623205555555555,query
+gen1,gen1_06,0.8601744444444445,q:
+gen1,gen1_00,0.8548705555555555,"Instruct: Retrieve
+Query: "
+gen1,gen1_00,0.8545694444444445,"Instruct: Retrieve
+Query: "
+gen1,gen1_24,0.854472777777778,"Instruct: Seek precise
+Query: "
+gen1,gen1_05,0.8536316666666668,"Instruct: Fetch
+Query: "
+gen1,gen1_03,0.8535283333333332,"Instruct: Search
+Query: "
+gen1,gen1_12,0.8534866666666666,"Instruct: Discover relevant
+Query: "
+gen1,gen1_02,0.8533949999999999,"Relevant Retrieval
+Query: "
+gen1,gen1_11,0.853281111111111,"Instruct: Seek
+Query: "
+gen1,gen1_23,0.8531277777777777,"Instruct: Search deeply
+Query: "
+gen1,gen1_04,0.8520838888888889,"Instruct: Explore
+Query: "
+gen1,gen1_08,0.8519227777777778,"Instruct: Uncover
+Query: "
+gen1,gen1_06,0.8512327777777776,"Instruct: Acquire
+Query: "
+gen1,gen1_01,0.8493344444444444,"Instruct: Identify
+Query: "
+gen1,gen1_13,0.8491044444444446,"Instruct: Unravel
+Query: "
+gen1,gen1_01,0.8489088888888889,"Instruct: Identify
+Query: "
+gen1,gen1_09,0.8481311111111111,"Instruct: Access
+Query: "
+gen1,gen1_17,0.8478122222222223,"Instruct: Discern
+Query: "
+gen1,gen1_14,0.8476811111111111,"Instruct: Pinpoint
+Query: "
+gen1,gen1_22,0.8470511111111111,"Instruct: Identify crucial
+Query: "
+gen1,gen1_07,0.8467016666666667,"Instruct: Probe
+Query: "
+gen1,gen1_10,0.846178888888889,"Instruct: Scan
+Query: "
+gen1,gen1_20,0.8459855555555557,"Instruct: Analyze
+Query: "
+gen1,gen1_16,0.844351111111111,"Instruct: Extract
+Query: "
+gen1,gen1_19,0.8440422222222224,"Instruct: Sift
+Query: "
+gen1,gen1_18,0.8428038888888889,"Instruct: Select
+Query: "
+gen1,gen1_15,0.8410405555555555,"Instruct: Detect
+Query: "
+gen1,gen1_21,0.8409427777777779,"Instruct: Filter
+Query: "
+gen1,gen1_02,0,?
+gen1,gen1_00,0,"Instruct: Retrieve
+Query: "
+gen1,gen1_01,0,"Instruct: Identify
+Query: "
+gen1,gen1_02,0,"Relevant Retrieval
+Query: "
+gen1,gen1_03,0,"Instruct: Search
+Query: "
+gen1,gen1_04,0,"Instruct: Explore
+Query: "
+gen1,gen1_05,0,"Instruct: Fetch
+Query: "
+gen1,gen1_06,0,"Instruct: Acquire
+Query: "
+gen1,gen1_07,0,"Instruct: Probe
+Query: "
+gen1,gen1_08,0,"Instruct: Uncover
+Query: "
+gen1,gen1_09,0,"Instruct: Access
+Query: "
+gen1,gen1_10,0,"Instruct: Scan
+Query: "
+gen1,gen1_11,0,"Instruct: Seek
+Query: "
+gen2,gen2_00,0.8678333333333331,
+gen2,gen2_05,0.8661461111111113,Retrieve
+gen2,gen2_08,0.8645722222222223,Search for
+gen2,gen2_06,0.8643766666666666,Look up
+gen2,gen2_10,0.8640433333333334,Search documents
+gen2,gen2_04,0.8639705555555555,Get
+gen2,gen2_16,0.8638866666666667,Retrieve relevant
+gen2,gen2_15,0.8638138888888888,Find documents
+gen2,gen2_19,0.8636788888888889,Retrieve
+gen2,gen2_03,0.8634894444444446,","
+gen2,gen2_01,0.8633755555555553,Find
+gen2,gen2_11,0.8633333333333334,
+gen2,gen2_02,0.8629599999999998,Search
+gen2,gen2_07,0.8628888888888889,Find it
+gen2,gen2_03,0.8625555555555556,Query
+gen2,gen2_21,0.8621027777777777,Identify
+gen2,gen2_19,0.8618855555555556,Get answer
+gen2,gen2_09,0.8615450000000001,?
+gen2,gen2_17,0.8612094444444442,Search text
+gen2,gen2_13,0.8611222222222222,Find answer
+gen2,gen2_09,0.8610533333333333,Find relevant
+gen2,gen2_14,0.8608616666666667,.
+gen2,gen2_17,0.8608283333333334,;
+gen2,gen2_01,0.8605777777777779,-
+gen2,gen2_12,0.8604683333333334,Get relevant
+gen2,gen2_15,0.8603605555555556,"Instruct
+"
+gen2,gen2_14,0.8602366666666668,Search corpus
+gen2,gen2_08,0.8600505555555557,=
+gen2,gen2_10,0.8597405555555556,Execute:
+gen2,gen2_07,0.8595650000000001,Find:
+gen2,gen2_11,0.8593794444444445,Find matching
+gen2,gen2_22,0.8582533333333333,- -
+gen2,gen2_23,0.8578033333333334,Uncover
+gen2,gen2_24,0.85746,Observe
+gen2,gen2_13,0.8571599999999999,Discover
+gen2,gen2_20,0.8571272222222223,Find relevant
+gen2,gen2_12,0.857083888888889,Seek
+gen2,gen2_16,0.8567738888888888,Look:
+gen2,gen2_02,0.8555649999999999,"Instruct: Act specifically
+"
+gen2,gen2_04,0.8555133333333333,"Instruct: Synthesize
+"
+gen2,gen2_18,0.8554727777777777,Find passage
+gen2,gen2_00,0.853757777777778,"Instruct: Act
+"
+gen2,gen2_06,0.85351,Choose
+gen2,gen2_18,0.852865,"Instruct: Locate
+"
+gen2,gen2_05,0.8488744444444444,"Instruct: Refine
+"
+gen3,gen3_00,0.8678333333333331,
+gen3,gen3_09,0.8648388888888889,Retrieve in matching language
+gen3,gen3_06,0.8639716666666666,Language-aware retrieval:
+gen3,gen3_04,0.8632549999999999,Search in the query's language
+gen3,gen3_02,0.8632422222222222,Find relevant documents in any language
+gen3,gen3_15,0.8626938888888888,Find in native language
+gen3,gen3_11,0.8625438888888889,Any language:
+gen3,gen3_13,0.8618188888888887,Language match:
+gen3,gen3_12,0.8617366666666667,Same language search:
+gen3,gen3_03,0.8616566666666665,Multilingual search:
+gen3,gen3_08,0.861491111111111,Cross-lingual search:
+gen3,gen3_01,0.8611200000000001,Identify language and find relevant passages
+gen3,gen3_14,0.8610972222222222,Multilingual:
+gen3,gen3_18,0.8605777777777779,-
+gen3,gen3_12,0.8601927777777777,"Retrieve Essential
+"
+gen3,gen3_09,0.8600822222222224,"Brief Overview
+"
+gen3,gen3_05,0.8598538888888889,Match language and find relevant
+gen3,gen3_02,0.8595466666666666,"Essential Info
+"
+gen3,gen3_13,0.8589355555555556,"Retrieve Core Info
+"
+gen3,gen3_01,0.8586299999999999,"Instruct: Retrieve
+"
+gen3,gen3_17,0.8584211111111112,--
+gen3,gen3_07,0.8581727777777777,"Concise Extract
+"
+gen3,gen3_03,0.8581577777777779,"Relevant Data
+"
+gen3,gen3_04,0.8577305555555557,"Core Details
+"
+gen3,gen3_15,0.8577211111111112,"Instruct: Identify
+"
+gen3,gen3_16,0.8572094444444445,"Target Info
+"
+gen3,gen3_06,0.8560261111111112,"Key Points
+"
+gen3,gen3_10,0.8558494444444444,"Detect language, find relevant"
+gen3,gen3_05,0.8557238888888888,"Instruct: Explore
+"
+gen3,gen3_21,0.8554677777777777,"Instruct: Gather
+"
+gen3,gen3_00,0.8553122222222223,"Instruct: Find
+"
+gen3,gen3_20,0.854913888888889,- Primary Info
+gen3,gen3_07,0.8549072222222223,Find passages in same language
+gen3,gen3_14,0.8547761111111111,"Focus: Key Data
+"
+gen3,gen3_24,0.8521616666666666,"Targeted Insights
+"
+gen3,gen3_08,0.8521327777777779,"Instruct: Collate
+"
+gen3,gen3_22,0.8514738888888888,"Instruct: Assemble
+"
+gen3,gen3_19,0.8503683333333334,- Essential Elements
+gen3,gen3_23,0.8499072222222221,"Central Elements
+"
+gen3,gen3_10,0.848145,-- Key Elements
+gen3,gen3_11,0.8448816666666666,-- Core Data
+gen4,gen4_00,0,
+gen4,gen4_01,0,查找
+gen4,gen4_02,0,بحث
+gen4,gen4_03,0,検索
+gen4,gen4_04,0,Поиск
+gen4,gen4_05,0,Recherche
+gen4,gen4_06,0,Búsqueda
+gen4,gen4_07,0,Suche
+gen4,gen4_08,0,खोज
+gen4,gen4_09,0,→
+gen4,gen4_10,0,⟹
+gen4,gen4_11,0,◉
+gen4,gen4_12,0,▶
+gen4,gen4_13,0,✓
+gen4,gen4_14,0,🔍
+gen4,gen4_15,0,.
+gen4,gen4_16,0,..
+gen4,gen4_17,0,...
+gen4,gen4_18,0,•
+gen4,gen4_19,0,—
+gen4,gen4_00,0,
+gen4,gen4_01,0,查找
+gen4,gen4_02,0,بحث
+gen4,gen4_03,0,検索
+gen4,gen4_04,0,Поиск
+gen4,gen4_05,0,Recherche
+gen4,gen4_06,0,Búsqueda
+gen4,gen4_07,0,Suche
+gen4,gen4_08,0,खोज
+gen4,gen4_09,0,→
+gen5,gen5_00,0,
+gen5,gen5_01,0,find/찾기/查找
+gen5,gen5_02,0,search/検索/بحث
+gen5,gen5_03,0,[query]
+gen5,gen5_04,0,{q}
+gen5,gen5_05,0,<search>
+gen5,gen5_06,0,$$
+gen5,gen5_07,0,##
+gen5,gen5_08,0,@@
+gen5,gen5_09,0,%%
+gen5,gen5_10,0,&&
+gen5,gen5_11,0,++
+gen5,gen5_12,0,==
+gen5,gen5_13,0,~~
+gen5,gen5_14,0,^^
+gen5,gen5_15,0,``
+gen5,gen5_16,0,||
+gen5,gen5_17,0,\\
+gen5,gen5_18,0,//
+gen5,gen5_19,0,**
+gen5,gen5_00,0,
+gen5,gen5_01,0,find/찾기/查找
+gen5,gen5_02,0,search/検索/بحث
+gen5,gen5_03,0,[query]
+gen5,gen5_04,0,{q}
+gen5,gen5_05,0,<search>
+gen5,gen5_06,0,$$
+gen5,gen5_07,0,##
+gen5,gen5_08,0,@@
+gen5,gen5_09,0,%%
+gen5,gen5_10,0,&&
+gen6,gen6_00,0,
+gen6,gen6_01,0, 
+gen6,gen6_02,0,  
+gen6,gen6_03,0,	
+gen6,gen6_04,0,"
+"
+gen6,gen6_05,0,a]
+gen6,gen6_06,0,[a
+gen6,gen6_07,0,0
+gen6,gen6_08,0,1
+gen6,gen6_09,0,_
+gen6,gen6_10,0,__
+gen6,gen6_11,0,___
+gen6,gen6_12,0,x
+gen6,gen6_13,0,X
+gen6,gen6_14,0,o
+gen6,gen6_15,0,O
+gen6,gen6_16,0,i
+gen6,gen6_17,0,I
+gen6,gen6_18,0,v
+gen6,gen6_19,0,V
+gen6,gen6_00,0,
+gen6,gen6_01,0, 
+gen6,gen6_02,0,  
+gen6,gen6_03,0,	
+gen6,gen6_04,0,"
+"
+gen6,gen6_05,0,a]
+gen6,gen6_06,0,[a
+gen6,gen6_07,0,0
+gen6,gen6_08,0,1
+gen6,gen6_09,0,_
+gen99,gen99_00,0.8558455555555556,MIRACL:
+gen99,gen99_06,0.8553438888888889,MIRACL document search
+gen99,gen99_07,0.8550411111111111,For MIRACL:
+gen99,gen99_01,0.8548744444444443,MIRACL query
+gen99,gen99_02,0.8534338888888887,MIRACL search
+gen99,gen99_09,0.8529338888888889,MIRACL multilingual search
+gen99,gen99_08,0.8524805555555555,MIRACL benchmark query
+gen99,gen99_05,0.8524288888888889,MIRACL find
+gen99,gen99_03,0.8509600000000002,MIRACL retrieval
+gen99,gen99_04,0.8442855555555555,MIRACL
+gen99,gen99_00,0,MIRACL:
+gen99,gen99_01,0,MIRACL query
+gen99,gen99_02,0,MIRACL search
+gen99,gen99_03,0,MIRACL retrieval
+gen99,gen99_04,0,MIRACL
+gen99,gen99_05,0,MIRACL find
+gen99,gen99_06,0,MIRACL document search
+gen99,gen99_07,0,For MIRACL:
+gen99,gen99_08,0,MIRACL benchmark query
+gen99,gen99_09,0,MIRACL multilingual search

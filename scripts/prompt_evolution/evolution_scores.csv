@@ -1,0 +1,13 @@
+Dataset,Domain,Baseline,Gen3,Gen4,Gen5,Gen6,Gen7,Gen8,Gen9,Final_Improvement,Best_Prompt
+AILACasedocs,Legal,47.49,47.49,47.49,47.49,47.49,47.53,47.79,47.79,+0.30%,Court request:
+AILAStatutes,Legal,54.35,55.97,56.26,56.26,56.26,56.26,56.26,56.26,+1.91%,Instruct: Match context with the best-fitting legal statute provisions Query:
+ChatDoctorRetrieval,Medical,77.20,77.20,77.20,77.20,77.39,77.39,77.39,77.39,+0.19%,Clarify medically with comprehensive effective responses
+DS1000Retrieval,Code,71.19,71.23,71.23,71.23,71.23,71.23,71.23,71.28,+0.09%,Instruct: Efficiently fetch Python data scripts using numpy Query:
+FinQARetrieval,Finance,88.99,88.99,88.99,88.99,88.99,88.99,88.99,88.99,+0.00%,(baseline - no prompt improvement)
+FinanceBenchRetrieval,Finance,93.16,93.89,93.89,93.90,93.90,93.90,93.91,93.95,+0.79%,Gather directly applicable financial data from key SEC documents Query:
+FreshStackRetrieval,Code,50.79,50.79,50.79,50.79,50.79,50.79,50.79,50.79,+0.00%,(baseline - no prompt improvement)
+HC3FinanceRetrieval,Finance,76.83,77.61,78.50,78.50,78.50,78.50,78.50,78.73,+1.90%,Find finance Q&A providing complete and relevant answers Query:
+HumanEvalRetrieval,Code,99.36,99.77,99.77,100.00,100.00,100.00,100.00,100.00,+0.64%,Return the easiest Python function solving the problem
+LegalQuAD,Legal,74.63,74.60,75.80,75.80,75.80,75.80,75.80,75.80,+1.17%,Surface directly applicable legal content
+LegalSummarization,Legal,78.09,78.85,78.96,79.20,79.20,79.20,79.29,79.29,+1.20%,Collect legal documents ensuring broad summarization coverage Query:
+WikiSQLRetrieval,Code,96.70,99.02,99.02,99.02,99.02,99.02,99.04,99.04,+2.34%,Uncover SQL query precisely tailored to inquiry

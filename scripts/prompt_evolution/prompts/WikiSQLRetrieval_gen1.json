@@ -1,0 +1,17 @@
+[
+  "Instruct: Retrieve precise SQL queries for the given task\nQuery: ",
+  "Instruct: Discover SQL query answers for natural language questions\nQuery: ",
+  "Instruct: Surface correct SQL implementations answering database questions\nQuery: ",
+  "Instruct: Retrieve SQL queries directly answering questions\nQuery: ",
+  "Instruct: Find and surface relevant SQL query implementations\nQuery: ",
+  "Instruct: Obtain SQL query answers to this database question\nQuery: ",
+  "Instruct: Discover accurate SQL queries for the given task\nQuery: ",
+  "Instruct: Short SQL retrieval for direct question answers\nQuery: ",
+  "Instruct: Retrieve the SQL that answers the simple question\nQuery: ",
+  "Instruct: Precise SQL retrieval directly applicable to questions\nQuery: ",
+  "Instruct: Discover SQL for the database question\nQuery: ",
+  "Instruct: Retrieve correct SQL implementations\nQuery: ",
+  "Instruct: Retrieve specific SQL solutions for questions\nQuery: ",
+  "Instruct: Explore SQL queries to solve the task\nQuery: ",
+  "Instruct: Generate SQL solutions directly addressing the task\nQuery: "
+]

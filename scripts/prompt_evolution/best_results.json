@@ -1,0 +1,28 @@
+{
+  "model": "voyage-4-large",
+  "embed_dim": 2048,
+  "generated": "2026-01-18",
+  "results": {
+    "FinanceBenchRetrieval": {
+      "baseline": 0.9316,
+      "best_score": 0.9389,
+      "improvement": 0.0073,
+      "best_prompt": "Convey the essential financial data using filing-based analysis",
+      "generation": 1
+    },
+    "HumanEvalRetrieval": {
+      "baseline": 0.9936,
+      "best_score": 0.9977,
+      "improvement": 0.0041,
+      "best_prompt": "Identify the appropriate Python function for the problem",
+      "generation": 2
+    },
+    "WikiSQLRetrieval": {
+      "baseline": 0.9670,
+      "best_score": 0.9902,
+      "improvement": 0.0232,
+      "best_prompt": "For the database inquiry, surface the SQL query that matches",
+      "generation": 2
+    }
+  }
+}
