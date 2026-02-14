@@ -312,7 +312,7 @@ def main():
         "--generation", type=int, default=0, help="Prompt generation (0=initial)"
     )
     parser.add_argument(
-        "--batch-size", type=int, default=1000, help="Batch size for mteb"
+        "--batch-size", type=int, default=1, help="Batch size for mteb"
     )
     parser.add_argument(
         "--workers",

@@ -148,6 +148,8 @@ def test_prompts(
     dry_run: bool = False,
     max_prompts: int = None,
     model: str = "voyageai/voyage-4-large-prompt-test",
+    num_gpus: int | None = None,
+    batch_size: int = 1000,
 ) -> bool:
     """Test prompts for all datasets."""
     from run_prompt_test import load_prompts, run_tests_parallel, run_tests_sequential
@@ -181,9 +183,9 @@ def test_prompts(
         prompt_tuples = [(f"gen{generation}_{i:02d}", p) for i, p in enumerate(prompts)]
 
         if workers > 1:
-            run_tests_parallel(ds, prompt_tuples, batch_size=1000, workers=workers, model_name=model)
+            run_tests_parallel(ds, prompt_tuples, batch_size=batch_size, workers=workers, model_name=model, num_gpus=num_gpus)
         else:
-            run_tests_sequential(ds, prompt_tuples, batch_size=1000, model_name=model)
+            run_tests_sequential(ds, prompt_tuples, batch_size=batch_size, model_name=model)
 
     return True
 
@@ -411,6 +413,18 @@ def main():
         help="LLM backend for prompt generation/evolution (default: auto)",
     )
     parser.add_argument(
+        "--batch-size",
+        type=int,
+        default=1,
+        help="Batch size for encoding (default: 1)",
+    )
+    parser.add_argument(
+        "--gpus",
+        type=int,
+        default=None,
+        help="Number of GPUs to distribute workers across (round-robin assignment)",
+    )
+    parser.add_argument(
         "--model",
         type=str,
         default="voyageai/voyage-4-large-prompt-test",
@@ -453,7 +467,7 @@ def main():
 
         # Test current generation
         test_prompts(
-            args.datasets, gen, args.workers, args.dry_run, args.prompts_per_gen, args.model
+            args.datasets, gen, args.workers, args.dry_run, args.prompts_per_gen, args.model, args.gpus, args.batch_size
         )
 
         # Analyze results
