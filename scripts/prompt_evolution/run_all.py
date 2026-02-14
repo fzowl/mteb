@@ -147,6 +147,7 @@ def test_prompts(
     workers: int = 3,
     dry_run: bool = False,
     max_prompts: int = None,
+    model: str = "voyageai/voyage-4-large-prompt-test",
 ) -> bool:
     """Test prompts for all datasets."""
     from run_prompt_test import load_prompts, run_tests_parallel, run_tests_sequential
@@ -161,7 +162,7 @@ def test_prompts(
 
     for ds in datasets:
         try:
-            prompts = load_prompts(ds, generation)
+            prompts = load_prompts(ds, generation, model)
         except FileNotFoundError:
             print(f"  Skipping {ds}: no prompts file for generation {generation}")
             continue
@@ -180,9 +181,9 @@ def test_prompts(
         prompt_tuples = [(f"gen{generation}_{i:02d}", p) for i, p in enumerate(prompts)]
 
         if workers > 1:
-            run_tests_parallel(ds, prompt_tuples, batch_size=1000, workers=workers)
+            run_tests_parallel(ds, prompt_tuples, batch_size=1000, workers=workers, model_name=model)
         else:
-            run_tests_sequential(ds, prompt_tuples, batch_size=1000)
+            run_tests_sequential(ds, prompt_tuples, batch_size=1000, model_name=model)
 
     return True
 
@@ -223,6 +224,7 @@ def evolve_prompts(
     generation: int,
     backend: str,
     dry_run: bool = False,
+    model: str = "voyage-4-large",
 ) -> bool:
     """Generate evolved prompts based on top performers."""
     from evolve_prompts import (
@@ -252,7 +254,7 @@ def evolve_prompts(
         print(f"\nEvolving {ds} (using top {len(top)} performers)...")
         evolved = evolve(ds, top, client, backend=backend)
         if evolved:
-            save_evolved_prompts(ds, evolved, generation)
+            save_evolved_prompts(ds, evolved, generation, model)
         else:
             print(f"  Failed to generate evolved prompts for {ds}")
 
@@ -408,6 +410,12 @@ def main():
         default="auto",
         help="LLM backend for prompt generation/evolution (default: auto)",
     )
+    parser.add_argument(
+        "--model",
+        type=str,
+        default="voyageai/voyage-4-large-prompt-test",
+        help="Model to test (default: voyageai/voyage-4-large-prompt-test)",
+    )
     args = parser.parse_args()
 
     # Quick test mode overrides
@@ -445,7 +453,7 @@ def main():
 
         # Test current generation
         test_prompts(
-            args.datasets, gen, args.workers, args.dry_run, args.prompts_per_gen
+            args.datasets, gen, args.workers, args.dry_run, args.prompts_per_gen, args.model
         )
 
         # Analyze results
@@ -456,7 +464,9 @@ def main():
 
             # Evolve for next generation (if not last)
             if gen < args.start_generation + args.generations - 1:
-                evolve_prompts(args.datasets, gen + 1, backend, args.dry_run)
+                # Derive model short name for prompt directory
+                model_short = args.model.split("/")[-1].replace("-prompt-test", "")
+                evolve_prompts(args.datasets, gen + 1, backend, args.dry_run, model_short)
 
     print(f"\n{'=' * 60}")
     print("PIPELINE COMPLETE")

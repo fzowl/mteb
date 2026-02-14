@@ -386,6 +386,54 @@ class VoyageEvolvedPromptsModel(VoyageModel):
         return self._batched_encode(sentences, batch_size, input_type)
 
 
+class SentenceTransformerPromptTestWrapper:
+    """Loader for SentenceTransformer-based models that reads query prompt from env var.
+
+    Used for prompt evolution experiments with open-weight models like voyage-4-nano.
+    Reads PROMPT_TEST_PROMPT env var and prepends it to queries.
+    """
+
+    @staticmethod
+    def load(
+        model_name: str, revision: str | None = None, device: str | None = None, **kwargs
+    ):
+        import os
+
+        from mteb.models.sentence_transformer_wrapper import (
+            SentenceTransformerEncoderWrapper,
+        )
+
+        test_prompt = os.environ.get("PROMPT_TEST_PROMPT", "")
+
+        # Build model_prompts that inject the test prompt for queries
+        if test_prompt:
+            custom_prompts = {
+                PromptType.query.value: test_prompt,
+                PromptType.document.value: "",
+            }
+        else:
+            custom_prompts = None  # Use model defaults (or no prompts)
+
+        return SentenceTransformerEncoderWrapper(
+            model=model_name,
+            revision=revision,
+            device=device,
+            model_prompts=custom_prompts,
+            **kwargs,
+        )
+
+
+def _sentence_transformer_prompt_test_loader(
+    model_name: str, revision: str | None = None, device: str | None = None, **kwargs
+):
+    """Loader function for SentenceTransformer prompt test models."""
+    # Use hf_model_name if provided (when model_name is a virtual name like -prompt-test)
+    actual_model = kwargs.pop("hf_model_name", model_name)
+    return SentenceTransformerPromptTestWrapper.load(
+        actual_model, revision=revision, device=device, **kwargs
+    )
+
+
 model_prompts = {
     PromptType.query.value: "query",
     PromptType.document.value: "document",
@@ -435,6 +483,34 @@ voyage_4_large_prompt_test = ModelMeta(
     ),
     max_tokens=32000,
     embed_dim=1024,
+    open_weights=False,
+    n_parameters=None,
+    memory_usage_mb=None,
+    license=None,
+    reference="https://blog.voyageai.com/2026/01/15/voyage-4/",
+    similarity_fn_name="cosine",
+    framework=["API"],
+    use_instructions=True,
+    training_datasets=VOYAGE_TRAINING_DATA,
+    public_training_code=None,
+    public_training_data=None,
+)
+
+# voyage-4-large at 2048d for prompt evolution experiments
+voyage_4_large_2048d_prompt_test = ModelMeta(
+    name="voyageai/voyage-4-large-2048d-prompt-test",
+    model_type=["dense"],
+    revision="1",
+    release_date="2026-01-15",
+    languages=None,
+    loader=VoyagePromptTestModel,
+    loader_kwargs=dict(
+        max_tokens=32000,
+        model_prompts=model_prompts,
+        api_model_name="voyage-4-large",
+    ),
+    max_tokens=32000,
+    embed_dim=2048,
     open_weights=False,
     n_parameters=None,
     memory_usage_mb=None,
@@ -1049,4 +1125,30 @@ voyage_4_nano = ModelMeta(
     public_training_code=None,
     public_training_data=None,
     extra_requirements_groups=["voyageai"],
+)
+
+# voyage-4-nano for prompt evolution experiments
+# Uses SentenceTransformer with PROMPT_TEST_PROMPT env var for query prompts
+voyage_4_nano_prompt_test = ModelMeta(
+    loader=_sentence_transformer_prompt_test_loader,
+    loader_kwargs={"trust_remote_code": True, "hf_model_name": "voyageai/voyage-4-nano"},
+    name="voyageai/voyage-4-nano-prompt-test",
+    model_type=["dense"],
+    revision="29e841f72aa70c2802a92aff8c6eeb23229591b0",
+    release_date="2026-01-15",
+    languages=VOYAGE_MULTILINGUAL_LANGUAGES,
+    open_weights=True,
+    framework=["Sentence Transformers", "PyTorch", "Transformers", "safetensors"],
+    n_parameters=346_451_968,
+    n_embedding_parameters=155_582_464,
+    memory_usage_mb=661,
+    max_tokens=32000,
+    embed_dim=2048,
+    license="apache-2.0",
+    reference="https://huggingface.co/voyageai/voyage-4-nano",
+    similarity_fn_name=ScoringFunction.COSINE,
+    use_instructions=True,
+    training_datasets=VOYAGE_TRAINING_DATA,
+    public_training_code=None,
+    public_training_data=None,
 )

@@ -397,17 +397,20 @@ def evolve_prompts(
     return []
 
 
-def save_evolved_prompts(dataset: str, prompts: list[str], generation: int):
-    """Save evolved prompts to file."""
-    output_file = PROMPTS_DIR / f"{dataset}_gen{generation}.json"
+def save_evolved_prompts(dataset: str, prompts: list[str], generation: int, model: str = "voyage-4-large"):
+    """Save evolved prompts to model-specific directory."""
+    model_dir = PROMPTS_DIR / model
+    model_dir.mkdir(parents=True, exist_ok=True)
+    output_file = model_dir / f"{dataset}_gen{generation}.json"
     output_file.write_text(json.dumps(prompts, indent=2))
     print(f"  Saved {len(prompts)} prompts to {output_file}")
 
 
-def determine_next_generation(dataset: str) -> int:
+def determine_next_generation(dataset: str, model: str = "voyage-4-large") -> int:
     """Determine the next generation number based on existing files."""
+    model_dir = PROMPTS_DIR / model
     gen = 1
-    while (PROMPTS_DIR / f"{dataset}_gen{gen}.json").exists():
+    while (model_dir / f"{dataset}_gen{gen}.json").exists():
         gen += 1
     return gen
 
@@ -458,6 +461,12 @@ def main():
         "--check-convergence",
         action="store_true",
         help="Skip datasets that have converged",
+    )
+    parser.add_argument(
+        "--model",
+        type=str,
+        default="voyage-4-large",
+        help="Model short name for prompt directory (default: voyage-4-large)",
     )
     args = parser.parse_args()
 
@@ -553,13 +562,13 @@ def main():
                 print(f"    {p['score']:.4f}: {prompt_display}")
 
         # Determine generation
-        generation = args.generation or determine_next_generation(dataset)
-        print(f"\n  Creating generation {generation}...")
+        generation = args.generation or determine_next_generation(dataset, args.model)
+        print(f"\n  Creating generation {generation} for {args.model}...")
 
         # Generate evolved prompts
         evolved = evolve_prompts(dataset, top, client, worst, backend)
         if evolved:
-            save_evolved_prompts(dataset, evolved, generation)
+            save_evolved_prompts(dataset, evolved, generation, args.model)
             print(f"  Success: {len(evolved)} new prompts ready for testing")
         else:
             print(f"  Failed to generate evolved prompts")

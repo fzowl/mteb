@@ -50,16 +50,33 @@ DATASET_ENV_VARS = {
 }
 
 
-def get_prompts_file(dataset: str, generation: int = 0) -> Path:
-    """Get the prompts file for a dataset and generation."""
+def model_short_name(model: str) -> str:
+    """Extract short model name from full model identifier.
+
+    E.g. 'voyageai/voyage-4-nano-prompt-test' -> 'voyage-4-nano'
+         'voyageai/voyage-4-large-prompt-test' -> 'voyage-4-large'
+         'voyage-4-nano' -> 'voyage-4-nano'
+    """
+    name = model.split("/")[-1]  # strip org prefix
+    name = name.replace("-prompt-test", "")
+    return name
+
+
+def get_prompts_file(dataset: str, generation: int = 0, model: str | None = None) -> Path:
+    """Get the prompts file for a dataset, generation, and model.
+
+    Gen0 (seed) prompts are model-agnostic: prompts/seed/{dataset}.json
+    GenN prompts are model-specific: prompts/{model_short}/{dataset}_genN.json
+    """
     if generation == 0:
-        return PROMPTS_DIR / f"{dataset}.json"
-    return PROMPTS_DIR / f"{dataset}_gen{generation}.json"
+        return PROMPTS_DIR / "seed" / f"{dataset}.json"
+    short = model_short_name(model) if model else "voyage-4-large"
+    return PROMPTS_DIR / short / f"{dataset}_gen{generation}.json"
 
 
-def load_prompts(dataset: str, generation: int = 0) -> list[str]:
+def load_prompts(dataset: str, generation: int = 0, model: str | None = None) -> list[str]:
     """Load prompts from JSON file."""
-    prompts_file = get_prompts_file(dataset, generation)
+    prompts_file = get_prompts_file(dataset, generation, model)
     if not prompts_file.exists():
         raise FileNotFoundError(f"Prompts file not found: {prompts_file}")
     return json.loads(prompts_file.read_text())
@@ -70,7 +87,7 @@ def _run_single_test_worker(args: tuple) -> dict:
 
     This runs in a separate process with its own environment.
     """
-    dataset, prompt, prompt_id, batch_size = args
+    dataset, prompt, prompt_id, batch_size, model_name = args
 
     # Set environment variables for this process
     os.environ["PROMPT_TEST_DATASET"] = dataset
@@ -99,7 +116,7 @@ def _run_single_test_worker(args: tuple) -> dict:
 
     try:
         # Load model - this will pick up the env vars
-        model = mteb.get_model("voyageai/voyage-4-large-prompt-test")
+        model = mteb.get_model(model_name)
 
         # Get the task
         tasks = mteb.get_tasks(tasks=[dataset])
@@ -172,9 +189,10 @@ def run_single_test(
     prompt: str,
     prompt_id: str,
     batch_size: int = 1000,
+    model_name: str = "voyageai/voyage-4-large-prompt-test",
 ) -> dict:
     """Run a single mteb test with a specific prompt using Python API."""
-    return _run_single_test_worker((dataset, prompt, prompt_id, batch_size))
+    return _run_single_test_worker((dataset, prompt, prompt_id, batch_size, model_name))
 
 
 def log_result(result: dict):
@@ -209,13 +227,14 @@ def run_tests_sequential(
     dataset: str,
     prompts: list[tuple[str, str]],
     batch_size: int = 1000,
+    model_name: str = "voyageai/voyage-4-large-prompt-test",
 ) -> list[dict]:
     """Run tests sequentially for a list of prompts."""
     results = []
 
     for i, (prompt_id, prompt) in enumerate(prompts):
         print(f"\n[{i + 1}/{len(prompts)}] Testing {prompt_id}")
-        result = run_single_test(dataset, prompt, prompt_id, batch_size)
+        result = run_single_test(dataset, prompt, prompt_id, batch_size, model_name)
         results.append(result)
         log_result(result)
 
@@ -227,13 +246,14 @@ def run_tests_parallel(
     prompts: list[tuple[str, str]],
     batch_size: int = 1000,
     workers: int = 3,
+    model_name: str = "voyageai/voyage-4-large-prompt-test",
 ) -> list[dict]:
     """Run tests in parallel using multiple worker processes."""
     results = []
 
     # Prepare work items
     work_items = [
-        (dataset, prompt, prompt_id, batch_size) for prompt_id, prompt in prompts
+        (dataset, prompt, prompt_id, batch_size, model_name) for prompt_id, prompt in prompts
     ]
 
     print(f"Starting {workers} workers for {len(work_items)} prompts...")
@@ -294,6 +314,12 @@ def main():
         help="Number of parallel workers (default: 1 = sequential)",
     )
     parser.add_argument(
+        "--model",
+        type=str,
+        default="voyageai/voyage-4-large-prompt-test",
+        help="Model to test (default: voyageai/voyage-4-large-prompt-test)",
+    )
+    parser.add_argument(
         "--list", action="store_true", help="List available prompts and exit"
     )
     args = parser.parse_args()
@@ -301,7 +327,7 @@ def main():
     # Handle --list
     if args.list:
         try:
-            prompts = load_prompts(args.dataset, args.generation)
+            prompts = load_prompts(args.dataset, args.generation, args.model)
             print(f"Prompts for {args.dataset} (gen {args.generation}):")
             for i, p in enumerate(prompts):
                 display = p[:60] + "..." if len(p) > 60 else p
@@ -315,7 +341,7 @@ def main():
     if args.prompt is not None:
         prompt_tuples = [("custom", args.prompt)]
     elif args.index is not None:
-        prompts = load_prompts(args.dataset, args.generation)
+        prompts = load_prompts(args.dataset, args.generation, args.model)
         if args.index >= len(prompts):
             print(f"Error: Index {args.index} out of range (max {len(prompts) - 1})")
             return
@@ -323,7 +349,7 @@ def main():
             (f"gen{args.generation}_{args.index:02d}", prompts[args.index])
         ]
     else:
-        prompts = load_prompts(args.dataset, args.generation)
+        prompts = load_prompts(args.dataset, args.generation, args.model)
         # Slice prompts
         end = args.start + args.count if args.count else None
         prompts = prompts[args.start : end]
@@ -334,15 +360,16 @@ def main():
         ]
 
     print(f"Testing {len(prompt_tuples)} prompts for {args.dataset}")
+    print(f"Model: {args.model}")
     print(f"Workers: {args.workers}")
     print(f"Results will be logged to: {RESULTS_CSV}")
 
     if args.workers > 1:
         results = run_tests_parallel(
-            args.dataset, prompt_tuples, args.batch_size, args.workers
+            args.dataset, prompt_tuples, args.batch_size, args.workers, args.model
         )
     else:
-        results = run_tests_sequential(args.dataset, prompt_tuples, args.batch_size)
+        results = run_tests_sequential(args.dataset, prompt_tuples, args.batch_size, args.model)
 
     # Summary
     successful = [r for r in results if r["score"] is not None]
