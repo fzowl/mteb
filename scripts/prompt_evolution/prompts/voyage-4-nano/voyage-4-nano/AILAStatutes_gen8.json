@@ -1,0 +1,33 @@
+{
+  "query_prompts": [
+    "Instruction: Present laws relevant to: {text}",
+    "Instruct: Look up legal references for query: {text}",
+    "Locate and specify the statutes governing: {text}",
+    "Uncover related legislative frameworks: {text}",
+    "Direct: Identify applicable legal rules in: {text}",
+    "Instruction: Explore legal statutes connected to: {text}",
+    "Probe for governing laws on: {text}",
+    "Query: Identify laws addressing: {text}",
+    "Provide a breakdown of legal statutes for: {text}",
+    "Determine applicable legal precedents on: {text}",
+    "Instruct: Match legal frameworks to this query: {text}",
+    "Instruct: Locate applicable legal statutes\nQuery: {text}",
+    "Instruct: Find laws that apply to the case\nQuery: {text}"
+  ],
+  "corpus_prompts": [
+    "Analysis of legal norms provided: {text}",
+    "Legislative insights and content included: {text}",
+    "Detailed legal exploration provided in: {text}",
+    "Legal discussion breakdown: {text}",
+    "Repository of statutory analysis: {text}",
+    "Document summary with legal references: {text}",
+    "Reference document with legislative details: {text}",
+    "Contained statutory provisions overview: {text}",
+    "Legal document offering statutory definitions: {text}",
+    "Comprehensive review of legislation: {text}",
+    "Synopsis of legal text: {text}",
+    "Review of statutory framework for context: {text}",
+    "Compilation of legal definitions found in: {text}",
+    "Legal background document \u2014 provisions detailed: {text}"
+  ]
+}

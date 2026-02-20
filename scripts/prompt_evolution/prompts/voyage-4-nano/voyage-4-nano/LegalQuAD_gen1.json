@@ -1,0 +1,34 @@
+{
+  "query_prompts": [
+    "Identify applicable legal references for: {text}",
+    "Find concise legal statutes addressing: {text}",
+    "Directly applicable precedents for question: {text}",
+    "Determine relevant legal frameworks for: {text}",
+    "Seek applicable statutes for: {text}",
+    "Pinpoint applicable legal text for: {text}",
+    "Explore legal context for: {text}",
+    "Explore judicial interpretations of: {text}",
+    "Surface context for: {text} within legal frameworks",
+    "Ascertain statutes that apply to: {text}",
+    "Given a legal question, locate textual evidence: {text}",
+    "{text}",
+    "Locate similar legal cases for: {text}"
+  ],
+  "corpus_prompts": [
+    "Legal context: {text}",
+    "Judicious excerpt: {text}",
+    "Legal framework details: {text}",
+    "Statute excerpt: {text}",
+    "Judicial authority text: {text}",
+    "Applicable provision: {text}",
+    "Jurisdictional reference: {text}",
+    "Canonical legal passage: {text}",
+    "Statutory segment: {text}",
+    "Legal text narrative: {text}",
+    "German law excerpt: {text}",
+    "Legal text: {text}",
+    "German legal passage: {text}",
+    "German legal statute: {text}",
+    "Legal reference: {text}"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "query_prompts": [
+    "Instruct: Locate legal codes related to the query\nQuery: {text}",
+    "Request: Search for statutes applicable to: {text}",
+    "Instruct: Detail regulations for the premise\nQuery: {text}",
+    "Instruct: Find legal text for the scenario\nDescription: {text}",
+    "Instruct: Identify relevant law sections for the case\nQuery: {text}",
+    "Query context: {text} \u2014 find applicable laws",
+    "Instruct: Match legal directions to this inquiry\nQuery: {text}",
+    "Instruction: Search for legal provisions related to {text}",
+    "For the scenario: {text} \u2014 uncover governing statutes",
+    "Please locate the legal texts that apply to: {text}",
+    "Instruct: Match legal frameworks to this query: {text}",
+    "Instruct: Find laws that apply to the case\nQuery: {text}",
+    "Instruct: Locate applicable legal statutes\nQuery: {text}"
+  ],
+  "corpus_prompts": [
+    "Legal provisions contained herein: {text}",
+    "Analysis of binding legislative contexts: {text}",
+    "Comprehensive breakdown of legal precedents: {text}",
+    "Legal structures articulated: {text}",
+    "Descriptive list of legal constraints: {text}",
+    "Overview of judicial doctrines: {text}",
+    "Reference guide to legislative structures: {text}",
+    "Comprehensive explanation of statutory frameworks: {text}",
+    "Annotated compendium of legal regulations: {text}",
+    "Legal principles and foundations: {text}",
+    "Document with statutory annotations: {text}",
+    "Review of statutory framework for context: {text}",
+    "Statutory framework analysis: {text}",
+    "Legal background document \u2014 provisions detailed: {text}"
+  ]
+}

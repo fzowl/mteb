@@ -1,0 +1,35 @@
+{
+  "query_prompts": [
+    "Directly obtain evidence for: {text}",
+    "Legal understanding required for: {text}",
+    "Important legal context for: {text}",
+    "Identify applicable laws concerning: {text}",
+    "Relevant statutes include: {text}",
+    "Explore essential legal references for: {text}",
+    "Confirm legal frameworks for: {text}",
+    "Review pertinent legal standards for: {text}",
+    "Surface directly applicable content for: {text}",
+    "Assess legal validity of: {text}",
+    "Given a legal question, locate textual evidence: {text}",
+    "{text}",
+    "Explore legal context for: {text}"
+  ],
+  "corpus_prompts": [
+    "Directly relevant legal provision: {text}",
+    "Applicable legal framework: {text}",
+    "Pertinent legal documentation: {text}",
+    "Essential context from legal text: {text}",
+    "Direct statutory interpretation: {text}",
+    "Regulatory passage: {text}",
+    "Key legal validation segment: {text}",
+    "Judicial guidance: {text}",
+    "Instructional legal excerpt: {text}",
+    "Definitive law extract: {text}",
+    "Judicious excerpt: {text}",
+    "Critical legal paragraph: {text}",
+    "Legal context: {text}",
+    "Canonical legal passage: {text}",
+    "Core jurisprudential text: {text}",
+    "Statute excerpt: {text}"
+  ]
+}

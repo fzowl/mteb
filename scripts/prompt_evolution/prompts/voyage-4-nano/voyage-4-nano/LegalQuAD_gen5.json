@@ -1,0 +1,34 @@
+{
+  "query_prompts": [
+    "Immediate legal context needed for: {text}",
+    "Determine applicable legal insights for: {text}",
+    "Essential legal judgment context: {text}",
+    "Pinpoint specific legal frameworks: {text}",
+    "Uncover essential legal directive for: {text}",
+    "Seeking precise legal documentation: {text}",
+    "Focus: Immediately relevant legal details\nQuery: {text}",
+    "{text} \u2014 pinpoint actionable statutes",
+    "Direct evidence needed for this legal matter: {text}",
+    "Find the essential legal references concerning: {text}",
+    "Given a legal question, locate textual evidence: {text}",
+    "{text}",
+    "Query the legal essence for: {text}"
+  ],
+  "corpus_prompts": [
+    "Directly pertinent legal interpretation: {text}",
+    "Essential legal narrative: {text}",
+    "Applicable jurisprudential content: {text}",
+    "Extract core legal definitions: {text}",
+    "Focus on immediate statutory directive: {text}",
+    "Direct extraction of legal provision: {text}",
+    "Locate instructive legal documentation: {text}",
+    "Identify direct legal relevance: {text}",
+    "Pinpoint essential legislative details: {text}",
+    "Locate essential context in legal provisions: {text}",
+    "Judicious excerpt: {text}",
+    "Canonical legal passage: {text}",
+    "Best-matched legal text: {text}",
+    "Core jurisprudential text: {text}",
+    "Essential context from legal text: {text}"
+  ]
+}

@@ -4,3 +4,671 @@ timestamp,dataset,prompt_id,prompt,score,error
 2026-02-14T14:15:07.404039,AILAStatutes,gen0_02,Locate the legislative provisions matching the described legal situation,0.51728,
 2026-02-14T14:30:50.464912,AILAStatutes,gen0_03,Find related legal texts that answer the scenario's requirements,0.51477,
 2026-02-14T14:48:44.513018,AILAStatutes,gen0_04,"Using the scenario context, match with applicable legal statutes",0.48802,
+2026-02-14T16:15:32.276466,AILAStatutes,gen0_07,"Given a legislative query, fetch pertinent statute information",0.50179,
+2026-02-14T16:15:32.288059,AILAStatutes,gen0_04,"Using the scenario context, match with applicable legal statutes",0.50928,
+2026-02-14T16:15:32.327596,AILAStatutes,gen0_03,Find related legal texts that answer the scenario's requirements,0.51627,
+2026-02-14T16:15:32.348536,AILAStatutes,gen0_00,,0.48635,
+2026-02-14T16:15:32.359155,AILAStatutes,gen0_02,Locate the legislative provisions matching the described legal situation,0.51909,
+2026-02-14T16:15:32.360674,AILAStatutes,gen0_06,Identify statutes that are contextually relevant to the scenario,0.50132,
+2026-02-14T16:15:32.367225,AILAStatutes,gen0_05,Search for statutory provisions addressing the given legal problem,0.5061,
+2026-02-14T16:15:32.371947,AILAStatutes,gen0_01,Retrieve relevant statutes based on this legal scenario provided,0.50676,
+2026-02-14T16:15:39.465209,AILAStatutes,gen0_09,Search for statutes with high semantic similarity to the scenario,0.51512,
+2026-02-14T16:15:39.539164,AILAStatutes,gen0_14,Search for highly relevant legal statutes for the situation,0.50892,
+2026-02-14T16:15:39.629210,AILAStatutes,gen0_15,Find statutes that optimize for both precision and recall,0.48462,
+2026-02-14T16:15:39.816893,AILAStatutes,gen0_08,"For the detailed situation, obtain the most precise legal statutes",0.51447,
+2026-02-14T16:15:39.822501,AILAStatutes,gen0_10,Discover statutes that provide answers to the legal query,0.51308,
+2026-02-14T16:15:39.845620,AILAStatutes,gen0_13,Fetch statutes offering the most comprehensive scenario coverage,0.5088,
+2026-02-14T16:15:39.863098,AILAStatutes,gen0_12,Match the described scenario to relevant legislative provisions,0.5127,
+2026-02-14T16:15:40.288528,AILAStatutes,gen0_11,"Based on scenario details, find exact match legal statutes",0.51302,
+2026-02-14T16:15:46.955150,AILAStatutes,gen0_17,"Using scenario nuances, discover relevant legal provisions",0.49853,
+2026-02-14T16:15:46.976084,AILAStatutes,gen0_18,Identify legislative texts that align with described requirements,0.50979,
+2026-02-14T16:15:47.021045,AILAStatutes,gen0_16,Locate statutes focusing on statutory relevance criteria,0.4932,
+2026-02-14T16:15:47.139682,AILAStatutes,gen0_19,Find accurately matching legal statutes to support the case,0.52212,
+2026-02-14T16:15:47.172963,AILAStatutes,gen0_22,Locate statutes prioritizing answer quality and scenario fit,0.51339,
+2026-02-14T16:15:47.240270,AILAStatutes,gen0_20,Search and surface relevant statutory provisions effectively,0.5028,
+2026-02-14T16:15:47.307892,AILAStatutes,gen0_21,"For this scenario, obtain supporting legal statute references",0.50899,
+2026-02-14T16:15:47.365673,AILAStatutes,gen0_23,Secure legislative sections closely matching the scenario demands,0.50388,
+2026-02-14T16:15:54.189791,AILAStatutes,gen0_24,"Using provided scenario details, surface best-fit legal statutes",0.50469,
+2026-02-14T16:27:35.120033,AILAStatutes,gen1_05,Instruct: Find matching legal statutes to potentially navigate cases,0.51892,
+2026-02-14T16:27:35.139621,AILAStatutes,gen1_06,Instruct: Search provisions that best meet the legal situation,0.49905,
+2026-02-14T16:27:37.421651,AILAStatutes,gen1_02,Instruct: Find legislative statutes strongly relevant to the legal situation,0.51653,
+2026-02-14T16:27:37.454115,AILAStatutes,gen1_04,Instruct: Discover legislative provisions highly relevant to the case,0.51486,
+2026-02-14T16:27:37.468189,AILAStatutes,gen1_03,Instruct: Search matching legal texts addressing case specifics,0.51206,
+2026-02-14T16:27:37.488981,AILAStatutes,gen1_00,Instruct: Search for legislative texts that closely align with the case needs,0.51366,
+2026-02-14T16:27:37.507214,AILAStatutes,gen1_07,Instruct: Find legal provisions most relevant to the scenario,0.51321,
+2026-02-14T16:27:37.574058,AILAStatutes,gen1_01,Instruct: Locate legal provisions that directly support the case scenario,0.51589,
+2026-02-14T16:27:42.279586,AILAStatutes,gen1_08,Instruct: Match legislative statutes directly with case requirements,0.51013,
+2026-02-14T16:27:42.389926,AILAStatutes,gen1_09,Instruct: Search legislative texts aligned with legal requirements,0.51709,
+2026-02-14T16:27:44.457843,AILAStatutes,gen1_14,Instruct: Discover key legislative statutes for effective case support,0.4972,
+2026-02-14T16:27:44.491777,AILAStatutes,gen1_12,Instruct: Search directly applicable statutes to legal scenarios,0.50902,
+2026-02-14T16:27:44.678712,AILAStatutes,gen1_10,Instruct: Locate the most relevant legal statutes to the case scenario,0.50966,
+2026-02-14T16:27:44.685983,AILAStatutes,gen1_11,Instruct: Retrieve legislative provisions pertinent to the case,0.51056,
+2026-02-14T16:27:44.750728,AILAStatutes,gen1_13,Instruct: Search legal texts closely matching the described conditions,0.51693,
+2026-02-14T16:27:44.906267,AILAStatutes,gen1_15,Instruct: Find succinct legal statutes aligned with scenario needs,0.5131,
+2026-02-14T16:27:49.338285,AILAStatutes,gen1_17,Instruct: Locate precise legislative statutes for case alignment,0.50547,
+2026-02-14T16:27:49.607926,AILAStatutes,gen1_16,Instruct: Search for directly relevant legal texts to case facts,0.5066,
+2026-02-14T16:27:51.592965,AILAStatutes,gen1_19,Instruct: Find comprehensive texts that meet statute requirements,0.49117,
+2026-02-14T16:27:51.602344,AILAStatutes,gen1_18,Instruct: Retrieve concise legal provisions matching the case,0.51776,
+2026-02-14T16:27:51.796235,AILAStatutes,gen1_22,Instruct: Find legal statutes that align closely with case facts,0.51113,
+2026-02-14T16:27:52.346778,AILAStatutes,gen1_20,Instruct: Identify critical legal provisions for case resolution,0.49578,
+2026-02-14T16:27:52.361911,AILAStatutes,gen1_23,Instruct: Identify statutes crucial for addressing legal situations,0.50699,
+2026-02-14T16:27:52.469338,AILAStatutes,gen1_21,Instruct: Search for precise legislative texts applying to the case,0.50885,
+2026-02-14T16:27:56.173175,AILAStatutes,gen1_24,Instruct: Search legal texts that perfectly match scenario requirements,0.51337,
+2026-02-14T16:28:32.373297,AILAStatutes,gen2_07,"Find legislative provisions to match the described legal context
+Query: ",0.53091,
+2026-02-14T16:28:32.381443,AILAStatutes,gen2_05,"Instruct: Retrieve legislative provisions for accurate case support
+Query: ",0.50344,
+2026-02-14T16:28:32.392168,AILAStatutes,gen2_04,"Find potentially relevant legal statutes for case support
+Query: ",0.51546,
+2026-02-14T16:28:32.418126,AILAStatutes,gen2_00,"Instruct: Locate concise statutes to potentially aid legal scenarios
+Query: ",0.50818,
+2026-02-14T16:28:32.433488,AILAStatutes,gen2_03,"Instruct: Locate legislative provisions to support the legal situation
+Query: ",0.53812,
+2026-02-14T16:28:32.457882,AILAStatutes,gen2_02,"Retrieve accurately matching provisions for case analysis
+Query: ",0.49744,
+2026-02-14T16:28:32.463522,AILAStatutes,gen2_06,"Locate concise statutes for described legal scenarios
+Query: ",0.52252,
+2026-02-14T16:28:32.473228,AILAStatutes,gen2_01,"Find legal statutes to navigate cases efficiently
+Query: ",0.50928,
+2026-02-14T16:28:39.532908,AILAStatutes,gen2_13,"Find concise provisions to aid legal scenarios
+Query: ",0.52454,
+2026-02-14T16:28:39.734179,AILAStatutes,gen2_09,"Identify legal provisions supporting the specified case
+Query: ",0.5197,
+2026-02-14T16:28:39.805620,AILAStatutes,gen2_11,"Retrieve concise and relevant legal provisions
+Query: ",0.51277,
+2026-02-14T16:28:39.832989,AILAStatutes,gen2_08,"Instruct: Find legislative statutes to aid described legal situations
+Query: ",0.51289,
+2026-02-14T16:28:39.890247,AILAStatutes,gen2_12,"Locate most relevant legal statutes to support cases
+Query: ",0.51416,
+2026-02-14T16:28:39.909239,AILAStatutes,gen2_10,"Locate the directly applicable statutes for legal situations
+Query: ",0.52991,
+2026-02-14T16:28:39.975979,AILAStatutes,gen2_15,"Instruct: Retrieve comprehensive statutes matching cases
+Query: ",0.52503,
+2026-02-14T16:28:39.984780,AILAStatutes,gen2_14,"Instruct: Navigate legal cases using relevant statutes
+Query: ",0.5027,
+2026-02-14T16:28:46.618740,AILAStatutes,gen2_16,"Retrieve relevant legal provisions efficiently
+Query: ",0.51279,
+2026-02-14T16:28:46.903791,AILAStatutes,gen2_20,"Instruct: Efficiently retrieve relevant statutory provisions
+Query: ",0.50376,
+2026-02-14T16:28:46.996738,AILAStatutes,gen2_22,"Find directly applicable statutes for legal situations
+Query: ",0.5272,
+2026-02-14T16:28:47.054088,AILAStatutes,gen2_21,"Locate accurate statutes that support legal queries
+Query: ",0.50985,
+2026-02-14T16:28:47.165605,AILAStatutes,gen2_18,"Match concise legislative statutes to the legal case
+Query: ",0.51929,
+2026-02-14T16:28:47.697555,AILAStatutes,gen2_17,"Locate legislative statutes directly applicable to the scenario
+Query: ",0.52424,
+2026-02-14T16:28:47.741092,AILAStatutes,gen2_23,"Instruct: Retrieve statutory provisions for precise case support
+Query: ",0.50534,
+2026-02-14T16:28:47.749289,AILAStatutes,gen2_19,"Find comprehensive legal provisions for case support
+Query: ",0.51438,
+2026-02-14T16:28:53.704657,AILAStatutes,gen2_24,"Match legislative statutes with described legal situations
+Query: ",0.52665,
+2026-02-14T16:29:23.013559,AILAStatutes,gen3_01,"Locate detailed statutes applicable to current legal scenarios
+Query: ",0.51495,
+2026-02-14T16:29:23.128894,AILAStatutes,gen3_04,"Fetch legislative provisions directly aligning with legal need
+Query: ",0.53524,
+2026-02-14T16:29:23.142798,AILAStatutes,gen3_05,"Instruct: Discover applicable statutes for legal scenarios
+Query: ",0.51068,
+2026-02-14T16:29:23.146727,AILAStatutes,gen3_07,"Match context with most relevant legislative statutes
+Query: ",0.51658,
+2026-02-14T16:29:23.161081,AILAStatutes,gen3_06,"Locate legislative provisions that support specific legal contexts
+Query: ",0.52423,
+2026-02-14T16:29:23.165055,AILAStatutes,gen3_03,"Instruct: Identify most suitable statutes for described situations
+Query: ",0.5189,
+2026-02-14T16:29:23.176181,AILAStatutes,gen3_02,"Find directly related legislative provisions to support legal context
+Query: ",0.52587,
+2026-02-14T16:29:23.178424,AILAStatutes,gen3_00,"Instruct: Match legal contexts with relevant legislative provisions
+Query: ",0.5195,
+2026-02-14T16:29:30.032957,AILAStatutes,gen3_09,"Instruct: Locate provisions supporting described legal situations
+Query: ",0.5147,
+2026-02-14T16:29:30.135402,AILAStatutes,gen3_08,"Find legislative statutes directly applicable to legal context
+Query: ",0.5437,
+2026-02-14T16:29:30.243552,AILAStatutes,gen3_12,"Locate precise statutes aligning with legal need
+Query: ",0.52196,
+2026-02-14T16:29:30.320960,AILAStatutes,gen3_10,"Instruct: Identify key statutes applicable to legal context
+Query: ",0.52467,
+2026-02-14T16:29:30.425297,AILAStatutes,gen3_11,"Find directly applicable legislative provisions for legal support
+Query: ",0.53788,
+2026-02-14T16:29:30.486493,AILAStatutes,gen3_15,"Instruct: Discover comprehensive statutes for legal situations
+Query: ",0.52337,
+2026-02-14T16:29:30.527151,AILAStatutes,gen3_13,"Identify important statutes that match specific legal contexts
+Query: ",0.51245,
+2026-02-14T16:29:30.544017,AILAStatutes,gen3_14,"Match legal context with supporting legislative provisions
+Query: ",0.52602,
+2026-02-14T16:29:36.989657,AILAStatutes,gen3_17,"Instruct: Match applicable legislative provisions accurately
+Query: ",0.52576,
+2026-02-14T16:29:37.528931,AILAStatutes,gen3_19,"Instruct: Fetch relevant legal statutes for scenario context
+Query: ",0.50586,
+2026-02-14T16:29:37.546027,AILAStatutes,gen3_16,"Locate relevant statutes supporting specific legal contexts
+Query: ",0.52626,
+2026-02-14T16:29:37.595660,AILAStatutes,gen3_18,"Locate statutes that directly address legal needs
+Query: ",0.53225,
+2026-02-14T16:29:37.607464,AILAStatutes,gen3_23,"Discover legislative statutes matching legal needs effectively
+Query: ",0.5279,
+2026-02-14T16:29:37.825712,AILAStatutes,gen3_20,"Identify most relevant statutes for each described situation
+Query: ",0.50209,
+2026-02-14T16:29:37.863150,AILAStatutes,gen3_21,"Locate comprehensive legislative provision support for context
+Query: ",0.52299,
+2026-02-14T16:29:37.887485,AILAStatutes,gen3_22,"Find specific provisions aligning with legal descriptions
+Query: ",0.51641,
+2026-02-14T16:29:44.008756,AILAStatutes,gen3_24,"Locate directly applicable legal statutes for current scenarios
+Query: ",0.51988,
+2026-02-14T16:30:05.575293,AILAStatutes,gen4_06,"Fetch relevant legal statutes for application
+Query: ",,"Unable to find 'hf://datasets/mteb/AILA_statutes@ebfcd844eadd3d667efa3c57fc5c8c87f5c2867e/corpus.jsonl' with any supported extension ['.csv', '.tsv', '.json', '.jsonl', '.ndjson', '.parquet', '.geoparquet', '.gpq', '.arrow', '.txt', '.tar', '.xml', '.hdf5', '.h5', '.eval', '.lance', '.blp', '.bmp', '.dib', '.bufr', '.cur', '.pcx', '.dcx', '.dds', '.ps', '.eps', '.fit', '.fits', '.fli', '.flc', '.ftc', '.ftu', '.gbr', '.gif', '.grib', '.png', '.apng', '.jp2', '.j2k', '.jpc', '.jpf', '.jpx', '.j2c"
+2026-02-14T16:30:05.851292,AILAStatutes,gen4_03,"Retrieve provisions aligning with legal needs
+Query: ",,"Unable to find 'hf://datasets/mteb/AILA_statutes@ebfcd844eadd3d667efa3c57fc5c8c87f5c2867e/corpus.jsonl' with any supported extension ['.csv', '.tsv', '.json', '.jsonl', '.ndjson', '.parquet', '.geoparquet', '.gpq', '.arrow', '.txt', '.tar', '.xml', '.hdf5', '.h5', '.eval', '.lance', '.blp', '.bmp', '.dib', '.bufr', '.cur', '.pcx', '.dcx', '.dds', '.ps', '.eps', '.fit', '.fits', '.fli', '.flc', '.ftc', '.ftu', '.gbr', '.gif', '.grib', '.png', '.apng', '.jp2', '.j2k', '.jpc', '.jpf', '.jpx', '.j2c"
+2026-02-14T16:30:06.544829,AILAStatutes,gen4_08,"Secure applicable statutes for legal backing
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:06.805688,AILAStatutes,gen4_09,"Retrieve provisions fitting legal requirements
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:07.495799,AILAStatutes,gen4_10,"Fetch most relevant legislative provisions
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:07.743385,AILAStatutes,gen4_11,"Find legislative statutes with direct support
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:08.472697,AILAStatutes,gen4_12,"Locate critical legal provisions addressing needs
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:08.730936,AILAStatutes,gen4_13,"Secure necessary statutes for legal reinforcement
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:09.410345,AILAStatutes,gen4_14,"Instruct: Directly applicable legal statutes search
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:09.674763,AILAStatutes,gen4_15,"Find concise legal provisions
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:10.375294,AILAStatutes,gen4_16,"Retrieve essential statutes
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:10.558002,AILAStatutes,gen4_02,"Locate directly applicable legal statutes
+Query: ",0.5377,
+2026-02-14T16:30:10.607700,AILAStatutes,gen4_17,"Seek targeted legal support
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:11.317895,AILAStatutes,gen4_18,"Fetch integral legislative statutes
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:11.578407,AILAStatutes,gen4_20,"Query statutes offering legal support
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:11.601877,AILAStatutes,gen4_19,"Locate concise legal provisions directly applicable
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:11.664653,AILAStatutes,gen4_07,"Find legislative support for legal context
+Query: ",0.52734,
+2026-02-14T16:30:12.254042,AILAStatutes,gen4_21,"Directly retrieve applicable statutes
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:12.553662,AILAStatutes,gen4_22,"Explore statutes for specific legal needs
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:12.588284,AILAStatutes,gen4_23,"Identify provisions providing legal support
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:12.680260,AILAStatutes,gen4_24,"Discover statutes for comprehensive legal application
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:12.789383,AILAStatutes,gen4_05,"Locate legislative provisions addressing specific cases
+Query: ",0.51273,
+2026-02-14T16:30:20.304759,AILAStatutes,gen4_00,"Instruct: Retrieve statutes providing direct legal support
+Query: ",0.53035,
+2026-02-14T16:30:21.393418,AILAStatutes,gen4_01,"Fetch legislative provisions for legal applications
+Query: ",0.5182,
+2026-02-14T16:30:22.484907,AILAStatutes,gen4_04,"Find statutes supporting legal context
+Query: ",0.5195,
+2026-02-14T16:30:42.342611,AILAStatutes,gen5_01,"Locate legislative provisions providing direct legal support
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:42.614784,AILAStatutes,gen5_06,"Instruct: Find legislative provisions that are directly applicable
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:42.668863,AILAStatutes,gen5_00,"Instruct: Fetch the legislative statutes directly applicable for legal use
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:42.691412,AILAStatutes,gen5_05,"Locate comprehensive legislative statutes for the legal query
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:42.704109,AILAStatutes,gen5_03,"Fetch directly supporting legal provisions
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:42.734538,AILAStatutes,gen5_02,"Find legislative statutes aligning closely with legal demands
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:42.980983,AILAStatutes,gen5_04,"Instruct: Locate the most relevant legislative statutes to meet legal needs
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:43.005413,AILAStatutes,gen5_07,"Fetch legislative support aligning directly with legal context
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:43.305125,AILAStatutes,gen5_08,"Find directly applicable provisions supporting legal requirements
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:43.633031,AILAStatutes,gen5_09,"Instruct: Locate the precise legislative statutes relevant to the query
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:43.682974,AILAStatutes,gen5_10,"Find statutes providing direct legal legislative context
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:43.692437,AILAStatutes,gen5_11,"Instruct: Fetch the most directly applicable legislative support
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:43.714562,AILAStatutes,gen5_12,"Locate applicable statutes directly relevant to legal matters
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:43.751171,AILAStatutes,gen5_13,"Fetch legislative texts directly supporting current legal demands
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:43.963191,AILAStatutes,gen5_14,"Instruct: Locate statutes directly providing legal guidance
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:44.023069,AILAStatutes,gen5_15,"Fetch relevant statutes for the direct application in legal scenarios
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:44.336693,AILAStatutes,gen5_16,"Instruct: Locate most directly aligned legislative support
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:44.629715,AILAStatutes,gen5_17,"Fetch the legislative provisions aligning closely with legal application
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:44.715059,AILAStatutes,gen5_19,"Fetch provisions closely aligning to legal context
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:44.715432,AILAStatutes,gen5_18,"Instruct: Locate applicable legislative statutes for direct usage
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:44.731994,AILAStatutes,gen5_20,"Locate most relevant legislative statutes for direct legal application
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:44.809826,AILAStatutes,gen5_21,"Fetch legislative support directly applicable to the legal query
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:44.999719,AILAStatutes,gen5_22,"Instruct: Find most relevant legislative statutes for legal context
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:45.157446,AILAStatutes,gen5_23,"Locate provisions directly supporting the legal instructions
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:30:45.321431,AILAStatutes,gen5_24,"Fetch directly applicable legislative texts for legal support
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:01.005931,AILAStatutes,gen6_05,"Locate directly applicable legal provisions
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:01.053323,AILAStatutes,gen6_03,"Find the most relevant legal provisions for context
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:01.148123,AILAStatutes,gen6_02,"Identify statutes that support legal context
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:01.305257,AILAStatutes,gen6_00,"Fetch legislative statutes for legal support needs
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:01.309972,AILAStatutes,gen6_07,"Fetch legal statutes directly aligned with need
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:01.321876,AILAStatutes,gen6_04,"Fetch applicable legislative provisions for legal purposes
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:01.356057,AILAStatutes,gen6_01,"Locate directly applicable legislative provisions
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:01.380044,AILAStatutes,gen6_06,"Find legislative statutes for legal application
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:02.074972,AILAStatutes,gen6_08,"Locate provisions directly supporting legal scenario
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:02.076997,AILAStatutes,gen6_09,"Identify the most relevant legislative statutes
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:02.273480,AILAStatutes,gen6_10,"Fetch legislative provisions fitting legal needs
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:02.460638,AILAStatutes,gen6_11,"Fetch statutes directly relevant to legal context
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:02.652292,AILAStatutes,gen6_12,"Find applicable legislative statutes for situation
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:02.888362,AILAStatutes,gen6_13,"Fetch applicable statutes aligned with legal need
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:03.260810,AILAStatutes,gen6_15,"Fetch directly applicable statutes for legal task
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:03.263098,AILAStatutes,gen6_14,"Locate legal provisions directly for the situation
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:04.741761,AILAStatutes,gen6_16,"Locate provisions that directly meet legal context
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:04.742245,AILAStatutes,gen6_17,"Identify relevant legislative statutes for need
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:05.595801,AILAStatutes,gen6_18,"Most relevant legislative statutes, locate them
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:05.595895,AILAStatutes,gen6_19,"Locate the most applicable legal provisions
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:05.755367,AILAStatutes,gen6_20,"Fetch statutes providing direct legal support
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:05.957005,AILAStatutes,gen6_21,"Locate directly relevant statutes for scenario
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:06.169562,AILAStatutes,gen6_23,"Provision search most aligning with legal context
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:06.188269,AILAStatutes,gen6_22,"Find applicable legislative statutes directly
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:06.386558,AILAStatutes,gen6_24,"Locate essential legislative statutes for task
+Query: ",,"
+ requires the protobuf library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+"
+2026-02-14T16:31:32.467501,AILAStatutes,gen7_05,"Find comprehensive statutes supporting specific legal context
+Query: ",0.52132,
+2026-02-14T16:31:32.467830,AILAStatutes,gen7_04,"Locate legislative statutes for direct legal applicability
+Query: ",0.53261,
+2026-02-14T16:31:32.482512,AILAStatutes,gen7_07,"Fetch directly relevant provisions for legal cases
+Query: ",0.51153,
+2026-02-14T16:31:32.501256,AILAStatutes,gen7_00,"Find statutes to support legal context
+Query: ",0.52468,
+2026-02-14T16:31:33.498573,AILAStatutes,gen7_06,"Identify legislative provisions that align with legal needs
+Query: ",0.53931,
+2026-02-14T16:31:33.521800,AILAStatutes,gen7_03,"Instruct: Fetch legislative statutes directly applicable to legal needs
+Query: ",0.53347,
+2026-02-14T16:31:33.538928,AILAStatutes,gen7_01,"Locate legislative provisions directly for legal support
+Query: ",0.5377,
+2026-02-14T16:31:33.641415,AILAStatutes,gen7_02,"Fetch directly applicable provisions that support legal need
+Query: ",0.52809,
+2026-02-14T16:31:39.368949,AILAStatutes,gen7_09,"Identify statutes for direct alignment with legal cases
+Query: ",0.5189,
+2026-02-14T16:31:39.564893,AILAStatutes,gen7_11,"Instruct: Find key legislative statutes for direct application
+Query: ",0.52967,
+2026-02-14T16:31:39.628732,AILAStatutes,gen7_10,"Fetch legal statutes providing direct support
+Query: ",0.52852,
+2026-02-14T16:31:39.956428,AILAStatutes,gen7_08,"Locate legal statutes that directly support case needs
+Query: ",0.5159,
+2026-02-14T16:31:40.500901,AILAStatutes,gen7_14,"Identify legislative support for direct legal contexts
+Query: ",0.52699,
+2026-02-14T16:31:40.799077,AILAStatutes,gen7_13,"Find directly relevant statutes for legal provisions
+Query: ",0.51916,
+2026-02-14T16:31:41.124841,AILAStatutes,gen7_12,"Locate applicable legislative provisions efficiently
+Query: ",0.5205,
+2026-02-14T16:31:41.302663,AILAStatutes,gen7_15,"Instruct: Locate essential statutes for legal application
+Query: ",0.52165,
+2026-02-14T16:31:46.642673,AILAStatutes,gen7_18,"Locate most relevant legislative provisions directly
+Query: ",0.52269,
+2026-02-14T16:31:46.724793,AILAStatutes,gen7_17,"Locate critical statutes supporting legal scenarios
+Query: ",0.49342,
+2026-02-14T16:31:46.789521,AILAStatutes,gen7_16,"Find directly applicable legal provisions for need
+Query: ",0.53012,
+2026-02-14T16:31:47.148793,AILAStatutes,gen7_19,"Fetch key legal statutes for direct applicability
+Query: ",0.53368,
+2026-02-14T16:31:47.334671,AILAStatutes,gen7_20,"Locate legislative statutes critical to legal success
+Query: ",0.51051,
+2026-02-14T16:31:48.033050,AILAStatutes,gen7_21,"Instruct: Fetch directly supporting legislative provisions
+Query: ",0.52962,
+2026-02-14T16:31:48.637500,AILAStatutes,gen7_22,"Identify statutes that directly support legal needs
+Query: ",0.54117,
+2026-02-14T16:31:48.886894,AILAStatutes,gen7_23,"Fetch statutes for direct legal support
+Query: ",0.51897,
+2026-02-14T16:31:53.619502,AILAStatutes,gen7_24,"Instruct: Locate comprehensive legislative support
+Query: ",0.51574,
+2026-02-14T16:32:20.357423,AILAStatutes,gen8_04,"Find relevant legislative provisions supporting legal context
+Query: ",0.52637,
+2026-02-14T16:32:21.316390,AILAStatutes,gen8_03,"Identify legislative statutes for legal aid
+Query: ",0.53419,
+2026-02-14T16:32:21.343561,AILAStatutes,gen8_02,"Instruct: Locate statutes aligning with legal provisions
+Query: ",0.52875,
+2026-02-14T16:32:21.364607,AILAStatutes,gen8_06,"Locate statutes that meet legislative needs
+Query: ",0.50479,
+2026-02-14T16:32:21.385380,AILAStatutes,gen8_05,"Identify legislative support for legal provisions
+Query: ",0.53677,
+2026-02-14T16:32:21.435907,AILAStatutes,gen8_01,"Find legislative provisions supporting the legal needs
+Query: ",0.54157,
+2026-02-14T16:32:21.437510,AILAStatutes,gen8_07,"Instruct: Find provisions directly aiding legal needs
+Query: ",0.52951,
+2026-02-14T16:32:21.519210,AILAStatutes,gen8_00,"Instruct: Identify directly applicable legislative statutes for legal context
+Query: ",0.53486,
+2026-02-14T16:32:27.391680,AILAStatutes,gen8_08,"Locate legislative statutes that support legal needs
+Query: ",0.53285,
+2026-02-14T16:32:28.178266,AILAStatutes,gen8_09,"Find legislative provisions for direct legal support
+Query: ",0.54079,
+2026-02-14T16:32:28.329389,AILAStatutes,gen8_13,"Locate applicable statutes for legal needs
+Query: ",0.51968,
+2026-02-14T16:32:28.420207,AILAStatutes,gen8_10,"Instruct: Identify statutes applying to legal context
+Query: ",0.51549,
+2026-02-14T16:32:28.494876,AILAStatutes,gen8_14,"Find legislative statutes that align with legal support needs
+Query: ",0.5288,
+2026-02-14T16:32:28.543038,AILAStatutes,gen8_11,"Find statutes supporting detailed legal provisions
+Query: ",0.52178,
+2026-02-14T16:32:28.565514,AILAStatutes,gen8_15,"Identify legislative provisions most relevant to legal needs
+Query: ",0.53029,
+2026-02-14T16:32:28.571808,AILAStatutes,gen8_12,"Identify provisions to directly support the legal context
+Query: ",0.51056,
+2026-02-14T16:32:34.545953,AILAStatutes,gen8_16,"Find directly applicable legal legislative provisions
+Query: ",0.53955,
+2026-02-14T16:32:35.392431,AILAStatutes,gen8_18,"Identify statutes fitting unique legal situations
+Query: ",0.51686,
+2026-02-14T16:32:35.416053,AILAStatutes,gen8_17,"Locate legislative support for specific legal needs
+Query: ",0.53495,
+2026-02-14T16:32:35.476056,AILAStatutes,gen8_21,"Locate provisions applying to legal scenarios
+Query: ",0.51545,
+2026-02-14T16:32:35.847057,AILAStatutes,gen8_23,"Instruct: Find legislative support aligning with legal needs
+Query: ",0.53289,
+2026-02-14T16:32:35.919369,AILAStatutes,gen8_19,"Find legislative statutes for comprehensive legal support
+Query: ",0.52987,
+2026-02-14T16:32:35.989091,AILAStatutes,gen8_22,"Identify legislative support directly aiding legal context
+Query: ",0.51455,
+2026-02-14T16:32:36.080430,AILAStatutes,gen8_20,"Identify relevant statutes for legal context
+Query: ",0.51506,
+2026-02-14T16:32:41.431408,AILAStatutes,gen8_24,"Locate applicable provisions for legal support
+Query: ",0.51241,

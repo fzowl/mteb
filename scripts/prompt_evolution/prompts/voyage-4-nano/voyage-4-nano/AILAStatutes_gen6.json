@@ -1,0 +1,33 @@
+{
+  "query_prompts": [
+    "Instruct: Identify governing statutes for this issue\nQuery: {text}",
+    "Instruct: Seek legislative answers\nQuestion: {text}",
+    "Instruct: Discover relevant law codes\nQuery: {text}",
+    "Identify statutory provisions applicable to: {text}",
+    "Instruct: Ascertain applicable rules\nQuery: {text}",
+    "Legal exploration: {text} \u2014 find relevant statutes",
+    "Instruct: Pinpoint statutes connected with\nQuery: {text}",
+    "Inquire: Seek legal frameworks for {text}",
+    "Directive: Find related legal codes\nQuery: {text}",
+    "Interpret the following legal context: {text} \u2014 seek insights",
+    "Instruct: Match legal frameworks to this query: {text}",
+    "Instruct: Locate applicable legal statutes\nQuery: {text}",
+    "Instruct: Find laws that apply to the case\nQuery: {text}"
+  ],
+  "corpus_prompts": [
+    "Analysis of statutory details: {text}",
+    "Document featuring legal frameworks: {text}",
+    "Repository of legislative references: {text}",
+    "Core statutory text: {text}",
+    "Compilation of legal narratives: {text}",
+    "Legal text overview included: {text}",
+    "Comprehensive detail of legislative codes: {text}",
+    "Document articulates statutory elements: {text}",
+    "Insight into legislative subject matter: {text}",
+    "Source for legal insight: {text}",
+    "Synopsis of legal text: {text}",
+    "Review of statutory framework for context: {text}",
+    "Compilation of legal definitions found in: {text}",
+    "Legal background document \u2014 provisions detailed: {text}"
+  ]
+}

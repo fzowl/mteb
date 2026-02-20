@@ -1,0 +1,34 @@
+{
+  "query_prompts": [
+    "Statute: {text}",
+    "Law case: {text}",
+    "Court rule: {text}",
+    "Legal ask: {text}",
+    "Case ref: {text}",
+    "Find law: {text}",
+    "Stat law: {text}",
+    "Query rule: {text}",
+    "Precedent: {text}",
+    "Court doc: {text}",
+    "Query law: {text}",
+    "Find case: {text}",
+    "Discover legal cases that provide contextually relevant insights for: {text}",
+    "Law query: {text}"
+  ],
+  "corpus_prompts": [
+    "Case document: {text}",
+    "Legal excerpt: {text}",
+    "Court file: {text}",
+    "Law document: {text}",
+    "Judgment report: {text}",
+    "Legal review: {text}",
+    "Statute analysis: {text}",
+    "Document summary: {text}",
+    "Precedent account: {text}",
+    "Legal brief: {text}",
+    "Case detail: {text}",
+    "Precedent text: {text}",
+    "Legal precedent document: {text}",
+    "Case law excerpt: {text}"
+  ]
+}

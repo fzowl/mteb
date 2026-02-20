@@ -1,0 +1,34 @@
+{
+  "query_prompts": [
+    "Law query: {text}",
+    "Case find: {text}",
+    "Statute: {text}",
+    "Legal doc: {text}",
+    "Court find: {text}",
+    "Query law: {text}",
+    "Find case: {text}",
+    "Doc search: {text}",
+    "Precedent: {text}",
+    "Law search: {text}",
+    "{text}",
+    "Retrieve court documents with relevant interpretations for: {text}",
+    "Find legal documents emphasizing relevant statutory interpretations for: {text}",
+    "Discover legal cases that provide contextually relevant insights for: {text}",
+    "Find relevant court case documents that align with: {text}"
+  ],
+  "corpus_prompts": [
+    "Court judgment: {text}",
+    "Legal finding: {text}",
+    "Document ruling: {text}",
+    "Statutory text: {text}",
+    "Judgment content: {text}",
+    "Precedent text: {text}",
+    "Law ruling: {text}",
+    "Case detail: {text}",
+    "Legal case: {text}",
+    "Court action: {text}",
+    "Legal case text: {text}",
+    "Legal precedent document: {text}",
+    "Case law excerpt: {text}"
+  ]
+}

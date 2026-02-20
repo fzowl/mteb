@@ -1,0 +1,33 @@
+{
+  "query_prompts": [
+    "Seek the specific legal context for: {text}",
+    "Locate precise legal references for: {text}",
+    "Extract applicable statutes guiding: {text}",
+    "Survey legal texts relevant to: {text}",
+    "Identify the core legal content for: {text}",
+    "Pinpoint pertinent jurisprudence addressing: {text}",
+    "Determine exact legislative context for: {text}",
+    "Uncover direct legal references for: {text}",
+    "Quickly locate relevant legal statutes for: {text}",
+    "Efficiently identify governing legal text for: {text}",
+    "Given a legal question, locate textual evidence: {text}",
+    "{text}",
+    "Explore legal context for: {text}"
+  ],
+  "corpus_prompts": [
+    "Concise legal content: {text}",
+    "Directly pertinent legislation: {text}",
+    "Core jurisprudential text: {text}",
+    "Exact statutory provision: {text}",
+    "Specific legal passage: {text}",
+    "Instructive legal segment: {text}",
+    "Essential legal statute: {text}",
+    "Substantive legal clause: {text}",
+    "Primary legal reference: {text}",
+    "Critical legal paragraph: {text}",
+    "Judicious excerpt: {text}",
+    "Canonical legal passage: {text}",
+    "Legal text narrative: {text}",
+    "Statute excerpt: {text}"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "query_prompts": [
+    "Instruct: Identify legislative frameworks applicable\nText: {text}",
+    "Guide: Retrieve legal codes associated with: {text}",
+    "Instruct: Investigate legal precedents\nDetails: {text}",
+    "Find applicable legal segments for: {text}",
+    "Explore statutory context for: {text}",
+    "Research legal doctrines pertinent to: {text}",
+    "Uncover legal text aligned with: {text}",
+    "Locate definitive laws concerning: {text}",
+    "Survey relevant legislations tied to: {text}",
+    "Determine corresponding legal mandates for: {text}",
+    "Instruct: Match legal frameworks to this query: {text}",
+    "Instruct: Find laws that apply to the case\nQuery: {text}",
+    "Instruct: Locate applicable legal statutes\nQuery: {text}"
+  ],
+  "corpus_prompts": [
+    "Encyclopedia of legal provisions: {text}",
+    "Document of legislative analysis: {text}",
+    "Compilation of statutory obligations: {text}",
+    "Report on legal principles: {text}",
+    "Reference for legislative guidelines: {text}",
+    "Collection of juridical clauses: {text}",
+    "Manual of statutory regulations: {text}",
+    "Registry of legal stipulations: {text}",
+    "Portal of legal references: {text}",
+    "Directory of judicial enactments: {text}",
+    "Document with statutory annotations: {text}",
+    "Review of statutory framework for context: {text}",
+    "Statutory framework analysis: {text}",
+    "Legal background document \u2014 provisions detailed: {text}"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "query_prompts": [
+    "Instruct: Identify relevant statutory laws\nQuery: {text}",
+    "Directive: Find related legal rules for: {text}",
+    "Examine legal scenarios for: {text} \u2014 uncover statutes",
+    "Instruct: Extract statutory references for this inquiry: {text}",
+    "Directive: Search for applicable legal documents regarding: {text}",
+    "Identify statutory connections in the context: {text}",
+    "Assess the legal framework relevant to: {text}",
+    "Locate statutory records applicable to the scenario: {text}",
+    "Search within legal precedents for: {text}",
+    "Analyze legal contexts for: {text} \u2014 identify related laws",
+    "Instruct: Locate applicable legal statutes\nQuery: {text}",
+    "Instruct: Match legal frameworks to this query: {text}",
+    "Instruct: Find laws that apply to the case\nQuery: {text}"
+  ],
+  "corpus_prompts": [
+    "Document includes relevant statutes: {text}",
+    "Analysis of legal texts contained here: {text}",
+    "This document provides statutory insights: {text}",
+    "Document focusing on legislative parameters: {text}",
+    "Statutory discussion and analysis within: {text}",
+    "Examination of legal provisions covered here: {text}",
+    "Legal content specifying statutory guidelines: {text}",
+    "Contained are legislative discussions and laws: {text}",
+    "Text clarifying statutory obligations and duties: {text}",
+    "Details of legal stipulations in this document: {text}",
+    "Legal background document \u2014 provisions detailed: {text}",
+    "Synopsis of legal text: {text}",
+    "Review of statutory framework for context: {text}",
+    "Compilation of legal definitions found in: {text}",
+    "Statutory framework analysis: {text}",
+    "Dismissal of non-relevant legal frameworks: {text}"
+  ]
+}

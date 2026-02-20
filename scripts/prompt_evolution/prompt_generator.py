@@ -103,7 +103,9 @@ DATASETS = {
     },
 }
 
-GENERATION_PROMPT = """Generate 25 diverse retrieval instruction prompts for the following dataset:
+GENERATION_PROMPT = """Generate diverse retrieval prompts for the following dataset. We need TWO types of prompts:
+1. **Query prompts** - applied to the user's search query before encoding
+2. **Corpus prompts** - applied to each document in the corpus before encoding
 
 Dataset: {dataset_name}
 Domain: {domain}
@@ -111,35 +113,51 @@ Task: {description}
 Corpus Type: {corpus_type}
 Current Score: {current_score:.1%}
 
-The model uses this format: "Instruct: {{instruction}}\\nQuery: " + user_query
+## Prompt Format
+Every non-empty prompt MUST contain {{text}} as placeholder for the actual input sentence.
+The model replaces {{text}} with the query or document text before encoding.
+- "Instruct: Find relevant statutes\\nQuery: {{text}}" — structured template
+- "Legal question: {{text}} — find matching precedents" — text in the middle
+- "Find relevant documents: {{text}}" — simple prefix
+- "" — empty/passthrough (baseline)
 
-Requirements for the 25 prompts:
-1. Each prompt should be a single instruction that will be prepended to the user's query
-2. The prompt replaces {{instruction}} in the template above
-3. Vary across these dimensions:
-   - Action verbs: retrieve, find, search, locate, identify, match, discover, fetch, obtain, surface
-   - Query framing: "Given a...", "For the...", "Based on...", "Using...", "Search for..."
-   - Specificity: generic vs domain-specific language
-   - Output description: what to return and why
-   - Length: short (5-10 words), medium (10-20 words), long (20-30 words)
-4. Include both generic and highly domain-specific prompts
-5. Include prompts that emphasize different aspects:
-   - Relevance/similarity focus
-   - Answering capability focus
-   - Precision vs recall tradeoff
-   - Semantic matching
-   - Exact matching
-6. Include some experimental/creative prompts that might work well
+## Requirements for Query Prompts (10 prompts):
+1. Each prompt is a template with {{text}} where the user's query goes
+2. Vary across: action verbs, framing, specificity, length (short to long)
+3. Include both generic and highly domain-specific prompts
+4. Include experimental/creative approaches
+5. Try different {{text}} placements: beginning, middle, end
 
-Return ONLY a JSON array of 25 strings. Include "" (empty string) as the first option for baseline comparison.
+## Requirements for Corpus Prompts (10 prompts):
+1. Each prompt is a template with {{text}} where the document text goes
+2. Types to try:
+   - Labels: "Legal document: {{text}}"
+   - Structured: "Document type: statute\\nContent: {{text}}"
+   - Descriptive: "This is a court case document about {{text}}"
+   - Contextual: "The following is a financial report excerpt: {{text}}"
+   - Classification: "Category: {domain}\\n{{text}}"
+3. Corpus prompts should help the model understand what TYPE of document it's encoding
+4. Include variety in approach and length
+
+Return ONLY a JSON object with two arrays.
+IMPORTANT: Every prompt string MUST contain {{text}} exactly once. The baseline (passthrough) is just "{{text}}". Include it as the first option in BOTH arrays.
 
 Example format:
-[
-  "",
-  "Given a legal scenario, retrieve relevant case documents",
-  "Find case precedents that match the legal issue described",
-  ...
-]
+{{
+  "query_prompts": [
+    "{{text}}",
+    "Given a legal scenario, retrieve relevant case documents for: {{text}}",
+    "Instruct: Find matching statutes\\nQuery: {{text}}",
+    ...
+  ],
+  "corpus_prompts": [
+    "{{text}}",
+    "Legal document: {{text}}",
+    "Document type: statute\\nContent: {{text}}",
+    "This is a legislative provision: {{text}}",
+    ...
+  ]
+}}
 """
 
 
@@ -201,31 +219,153 @@ def generate_prompts_openai(dataset_name: str, client) -> list[str]:
     return response.choices[0].message.content
 
 
+def _ensure_baseline_first(prompts: list[str]) -> list[str]:
+    """Ensure {text} baseline is first in the list."""
+    baseline = "{text}"
+    if baseline not in prompts:
+        prompts.insert(0, baseline)
+    elif prompts[0] != baseline:
+        prompts.remove(baseline)
+        prompts.insert(0, baseline)
+    return prompts
+
+
+def _find_invalid_prompts(prompts: list[str]) -> list[str]:
+    """Return prompts that don't contain {text}."""
+    return [p for p in prompts if "{text}" not in p]
+
+
+FIX_PROMPT = """The following prompts are INVALID because they don't contain {{text}} as a placeholder.
+Every prompt MUST contain {{text}} exactly once — the model replaces it with the actual input.
+
+Invalid prompts:
+{invalid_json}
+
+Please rewrite ONLY these prompts so each contains {{text}}. Return a JSON array of the fixed prompts (same order, same count).
+
+Example fixes:
+- "Find relevant documents" -> "Find relevant documents: {{text}}"
+- "Legal:" -> "Legal: {{text}}"
+- "Instruct: Search\\nQuery: " -> "Instruct: Search\\nQuery: {{text}}"
+"""
+
+
+def _fix_invalid_prompts(invalid: list[str], client, backend: str) -> list[str]:
+    """Ask LLM to fix prompts that are missing {text}."""
+    content = FIX_PROMPT.format(invalid_json=json.dumps(invalid, indent=2))
+
+    if backend == "anthropic":
+        response = client.messages.create(
+            model="claude-sonnet-4-20250514",
+            max_tokens=2000,
+            messages=[{"role": "user", "content": content}],
+        )
+        text = response.content[0].text
+    else:
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            max_tokens=2000,
+            messages=[{"role": "user", "content": content}],
+        )
+        text = response.choices[0].message.content
+
+    match = re.search(r"\[.*\]", text, re.DOTALL)
+    if match:
+        try:
+            return json.loads(match.group())
+        except json.JSONDecodeError:
+            pass
+    return []
+
+
+def _validate_and_fix_prompts(
+    prompts: list[str], label: str, client, backend: str
+) -> list[str]:
+    """Validate all prompts contain {text}, ask LLM to fix any that don't."""
+    invalid = _find_invalid_prompts(prompts)
+    if not invalid:
+        return prompts
+
+    print(f"  {len(invalid)} {label} missing {{text}}, asking LLM to fix...")
+    fixed = _fix_invalid_prompts(invalid, client, backend)
+
+    if len(fixed) == len(invalid):
+        # Replace invalid prompts with fixed versions
+        invalid_set = {id(p): i for i, p in enumerate(invalid)}
+        fix_idx = 0
+        result = []
+        for p in prompts:
+            if "{text}" not in p and fix_idx < len(fixed):
+                new_p = fixed[fix_idx]
+                fix_idx += 1
+                if "{text}" in new_p:
+                    result.append(new_p)
+                    print(f"    Fixed: {p!r} -> {new_p!r}")
+                else:
+                    # Still broken, drop it
+                    print(f"    Dropped (still invalid): {p!r}")
+            else:
+                result.append(p)
+        return result
+    else:
+        # Fix count mismatch — just drop invalid prompts
+        print(f"  Fix count mismatch, dropping {len(invalid)} invalid prompts")
+        return [p for p in prompts if "{text}" in p]
+
+
+def _parse_llm_response(text: str) -> dict[str, list[str]] | None:
+    """Parse LLM response into prompt dict. Returns None on failure."""
+    # Try JSON object with query_prompts and corpus_prompts
+    match = re.search(r"\{.*\}", text, re.DOTALL)
+    if match:
+        try:
+            data = json.loads(match.group())
+            if isinstance(data, dict) and "query_prompts" in data:
+                return {
+                    "query_prompts": data["query_prompts"],
+                    "corpus_prompts": data.get("corpus_prompts", ["{text}"]),
+                }
+        except json.JSONDecodeError:
+            pass
+
+    # Fallback: flat JSON array (backward compat)
+    match = re.search(r"\[.*\]", text, re.DOTALL)
+    if match:
+        try:
+            prompts = json.loads(match.group())
+            return {"query_prompts": prompts, "corpus_prompts": ["{text}"]}
+        except json.JSONDecodeError as e:
+            print(f"  Error parsing JSON: {e}")
+
+    return None
+
+
 def generate_prompts(
     dataset_name: str, client, backend: str = "anthropic"
-) -> list[str]:
-    """Generate diverse prompts for a dataset using LLM."""
+) -> dict[str, list[str]]:
+    """Generate diverse query and corpus prompts for a dataset using LLM."""
     if backend == "anthropic":
         text = generate_prompts_anthropic(dataset_name, client)
     else:
         text = generate_prompts_openai(dataset_name, client)
 
-    # Extract JSON array from response
-    match = re.search(r"\[.*\]", text, re.DOTALL)
-    if match:
-        try:
-            prompts = json.loads(match.group())
-            # Ensure empty string baseline is first
-            if "" not in prompts:
-                prompts.insert(0, "")
-            elif prompts[0] != "":
-                prompts.remove("")
-                prompts.insert(0, "")
-            return prompts
-        except json.JSONDecodeError as e:
-            print(f"  Error parsing JSON: {e}")
-            return [""]
-    return [""]
+    result = _parse_llm_response(text)
+    if not result:
+        return {"query_prompts": ["{text}"], "corpus_prompts": ["{text}"]}
+
+    # Validate and fix prompts missing {text}
+    result["query_prompts"] = _validate_and_fix_prompts(
+        result["query_prompts"], "query prompts", client, backend
+    )
+    result["corpus_prompts"] = _validate_and_fix_prompts(
+        result["corpus_prompts"], "corpus prompts", client, backend
+    )
+
+    # Ensure baseline is first
+    result["query_prompts"] = _ensure_baseline_first(result["query_prompts"])
+    result["corpus_prompts"] = _ensure_baseline_first(result["corpus_prompts"])
+
+    return result
 
 
 def main():
@@ -282,7 +422,7 @@ def main():
         print("Or use --backend to specify which to use")
         return
 
-    output_dir = Path(__file__).parent / "prompts"
+    output_dir = Path(__file__).parent / "prompts" / "seed"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Get datasets
@@ -300,7 +440,9 @@ def main():
         output_file = output_dir / f"{dataset}.json"
         with open(output_file, "w") as f:
             json.dump(prompts, f, indent=2)
-        print(f"  Generated {len(prompts)} prompts -> {output_file}")
+        n_query = len(prompts["query_prompts"])
+        n_corpus = len(prompts["corpus_prompts"])
+        print(f"  Generated {n_query} query + {n_corpus} corpus prompts -> {output_file}")
 
 
 if __name__ == "__main__":

@@ -298,14 +298,20 @@ class VoyageModel(AbsEncoder):
         return embeddings_array
 
 
+def apply_prompt(prompt: str, sentence: str) -> str:
+    """Apply a prompt template to a sentence. Prompt must contain {text} placeholder."""
+    return prompt.format(text=sentence)
+
+
 class VoyagePromptTestModel(VoyageModel):
-    """VoyageModel variant that reads query prompt from environment variable.
+    """VoyageModel variant that reads query/corpus prompts from environment variables.
 
     This is used for prompt evolution experiments where we test different
-    query prompts without modifying model configuration.
+    prompts without modifying model configuration.
 
     Environment variables:
-        PROMPT_TEST_PROMPT: The prompt to prepend to queries (can be empty)
+        PROMPT_TEST_PROMPT: The prompt to apply to queries
+        PROMPT_TEST_CORPUS_PROMPT: The prompt to apply to corpus documents
     """
 
     def encode(
@@ -326,38 +332,45 @@ class VoyagePromptTestModel(VoyageModel):
 
         sentences = [text for batch in inputs for text in batch["text"]]
 
-        # For queries, prepend the prompt from environment variable
         if input_type == "query":
-            test_prompt = os.environ.get("PROMPT_TEST_PROMPT", "")
-            if test_prompt:
-                sentences = [f"{test_prompt} {s}" for s in sentences]
+            test_prompt = os.environ.get("PROMPT_TEST_PROMPT", "{text}")
+            sentences = [apply_prompt(test_prompt, s) for s in sentences]
+        elif input_type == "document":
+            corpus_prompt = os.environ.get("PROMPT_TEST_CORPUS_PROMPT", "{text}")
+            sentences = [apply_prompt(corpus_prompt, s) for s in sentences]
 
         return self._batched_encode(sentences, batch_size, input_type)
 
 
 # Best prompts discovered through prompt evolution experiments
+# All non-empty prompts use {text} as placeholder for the input sentence.
 EVOLVED_BEST_PROMPTS = {
     # Gen9 results - updated 2026-01-20
-    "AILACasedocs": "Court request:",  # Short prompt beats baseline! (47.79% vs 47.49%)
-    "AILAStatutes": "Instruct: Match context with the best-fitting legal statute provisions\nQuery: ",  # 56.26% vs 54.35%
-    "ChatDoctorRetrieval": "Clarify medically with comprehensive, effective responses",  # 77.39% vs 77.20%
-    "DS1000Retrieval": "Instruct: Efficiently fetch Python data scripts using numpy\nQuery: ",  # 71.28% vs 71.19%
+    "AILACasedocs": "Court request: {text}",  # Short prompt beats baseline! (47.79% vs 47.49%)
+    "AILAStatutes": "Instruct: Match context with the best-fitting legal statute provisions\nQuery: {text}",  # 56.26% vs 54.35%
+    "ChatDoctorRetrieval": "Clarify medically with comprehensive, effective responses {text}",  # 77.39% vs 77.20%
+    "DS1000Retrieval": "Instruct: Efficiently fetch Python data scripts using numpy\nQuery: {text}",  # 71.28% vs 71.19%
     "FinQARetrieval": "",  # baseline is better (88.99%)
-    "FinanceBenchRetrieval": "Gather directly applicable financial data from key SEC documents\nQuery: ",  # 93.95% vs 93.16%
+    "FinanceBenchRetrieval": "Gather directly applicable financial data from key SEC documents\nQuery: {text}",  # 93.95% vs 93.16%
     "FreshStackRetrieval": "",  # baseline is better (50.79%)
-    "HC3FinanceRetrieval": "Find finance Q&A providing complete and relevant answers\nQuery: ",  # 78.73% vs 76.83%
-    "HumanEvalRetrieval": "Return the easiest Python function solving the problem",  # 100%! vs 99.36%
-    "LegalQuAD": "Surface directly applicable legal content",  # 75.80% vs 74.63%
-    "LegalSummarization": "Collect legal documents ensuring broad summarization coverage\nQuery: ",  # 79.29% vs 78.09%
-    "WikiSQLRetrieval": "Uncover SQL query precisely tailored to inquiry",  # 99.04% vs 96.70%
+    "HC3FinanceRetrieval": "Find finance Q&A providing complete and relevant answers\nQuery: {text}",  # 78.73% vs 76.83%
+    "HumanEvalRetrieval": "Return the easiest Python function solving the problem {text}",  # 100%! vs 99.36%
+    "LegalQuAD": "Surface directly applicable legal content {text}",  # 75.80% vs 74.63%
+    "LegalSummarization": "Collect legal documents ensuring broad summarization coverage\nQuery: {text}",  # 79.29% vs 78.09%
+    "WikiSQLRetrieval": "Uncover SQL query precisely tailored to inquiry {text}",  # 99.04% vs 96.70%
+}
+
+# Best corpus prompts discovered through prompt evolution experiments
+EVOLVED_BEST_CORPUS_PROMPTS: dict[str, str] = {
+    # To be populated after corpus prompt evolution experiments
 }
 
 
 class VoyageEvolvedPromptsModel(VoyageModel):
     """VoyageModel variant that uses evolved best prompts per dataset.
 
-    This model applies dataset-specific query prompts that were discovered
-    through prompt evolution experiments to maximize retrieval performance.
+    This model applies dataset-specific query and corpus prompts that were
+    discovered through prompt evolution experiments to maximize retrieval performance.
     """
 
     def encode(
@@ -375,61 +388,80 @@ class VoyageEvolvedPromptsModel(VoyageModel):
         input_type = self.model_prompts.get(prompt_name, "document")
 
         sentences = [text for batch in inputs for text in batch["text"]]
+        dataset_name = task_metadata.name
 
-        # For queries, prepend the evolved best prompt for this dataset
         if input_type == "query":
-            dataset_name = task_metadata.name
-            best_prompt = EVOLVED_BEST_PROMPTS.get(dataset_name, "")
-            if best_prompt:
-                sentences = [f"{best_prompt} {s}" for s in sentences]
+            best_prompt = EVOLVED_BEST_PROMPTS.get(dataset_name, "{text}")
+            sentences = [apply_prompt(best_prompt, s) for s in sentences]
+        elif input_type == "document":
+            best_corpus_prompt = EVOLVED_BEST_CORPUS_PROMPTS.get(dataset_name, "{text}")
+            sentences = [apply_prompt(best_corpus_prompt, s) for s in sentences]
 
         return self._batched_encode(sentences, batch_size, input_type)
 
 
-class SentenceTransformerPromptTestWrapper:
-    """Loader for SentenceTransformer-based models that reads query prompt from env var.
+class SentenceTransformerPromptTestEncoderWrapper(AbsEncoder):
+    """SentenceTransformer wrapper that supports {text} template prompts for both queries and corpus.
 
-    Used for prompt evolution experiments with open-weight models like voyage-4-nano.
-    Reads PROMPT_TEST_PROMPT env var and prepends it to queries.
+    Reads PROMPT_TEST_PROMPT and PROMPT_TEST_CORPUS_PROMPT env vars and applies them
+    using the apply_prompt() template function before encoding.
     """
 
-    @staticmethod
-    def load(
-        model_name: str, revision: str | None = None, device: str | None = None, **kwargs
-    ):
+    mteb_model_meta: ModelMeta
+
+    def __init__(
+        self,
+        model: str,
+        revision: str | None = None,
+        device: str | None = None,
+        **kwargs,
+    ) -> None:
+        from sentence_transformers import SentenceTransformer
+
+        self.model = SentenceTransformer(
+            model, revision=revision, device=device, **kwargs
+        )
+        self.mteb_model_meta = ModelMeta.from_sentence_transformer_model(self.model)
+        self.model_prompts = self.validate_task_to_prompt_name(None)
+
+    def encode(
+        self,
+        inputs: DataLoader[BatchedInput],
+        *,
+        task_metadata: TaskMetadata,
+        hf_split: str,
+        hf_subset: str,
+        prompt_type: PromptType | None = None,
+        **kwargs: Any,
+    ) -> Array:
         import os
 
-        from mteb.models.sentence_transformer_wrapper import (
-            SentenceTransformerEncoderWrapper,
+        _inputs = [text for batch in inputs for text in batch["text"]]
+
+        # Apply template-based prompts before encoding
+        if prompt_type == PromptType.query:
+            test_prompt = os.environ.get("PROMPT_TEST_PROMPT", "{text}")
+            _inputs = [apply_prompt(test_prompt, s) for s in _inputs]
+        elif prompt_type == PromptType.document:
+            corpus_prompt = os.environ.get("PROMPT_TEST_CORPUS_PROMPT", "{text}")
+            _inputs = [apply_prompt(corpus_prompt, s) for s in _inputs]
+
+        # Encode without any built-in prompt (we already applied ours)
+        embeddings = self.model.encode(
+            _inputs,
+            prompt=None,
+            show_progress_bar=kwargs.get("show_progress_bar", True),
+            batch_size=kwargs.get("batch_size", 32),
         )
-
-        test_prompt = os.environ.get("PROMPT_TEST_PROMPT", "")
-
-        # Build model_prompts that inject the test prompt for queries
-        if test_prompt:
-            custom_prompts = {
-                PromptType.query.value: test_prompt,
-                PromptType.document.value: "",
-            }
-        else:
-            custom_prompts = None  # Use model defaults (or no prompts)
-
-        return SentenceTransformerEncoderWrapper(
-            model=model_name,
-            revision=revision,
-            device=device,
-            model_prompts=custom_prompts,
-            **kwargs,
-        )
+        return np.array(embeddings)
 
 
 def _sentence_transformer_prompt_test_loader(
     model_name: str, revision: str | None = None, device: str | None = None, **kwargs
 ):
     """Loader function for SentenceTransformer prompt test models."""
-    # Use hf_model_name if provided (when model_name is a virtual name like -prompt-test)
     actual_model = kwargs.pop("hf_model_name", model_name)
-    return SentenceTransformerPromptTestWrapper.load(
+    return SentenceTransformerPromptTestEncoderWrapper(
         actual_model, revision=revision, device=device, **kwargs
     )
 
@@ -511,6 +543,62 @@ voyage_4_large_2048d_prompt_test = ModelMeta(
     ),
     max_tokens=32000,
     embed_dim=2048,
+    open_weights=False,
+    n_parameters=None,
+    memory_usage_mb=None,
+    license=None,
+    reference="https://blog.voyageai.com/2026/01/15/voyage-4/",
+    similarity_fn_name="cosine",
+    framework=["API"],
+    use_instructions=True,
+    training_datasets=VOYAGE_TRAINING_DATA,
+    public_training_code=None,
+    public_training_data=None,
+)
+
+# voyage-4 for prompt evolution experiments
+voyage_4_prompt_test = ModelMeta(
+    name="voyageai/voyage-4-prompt-test",
+    model_type=["dense"],
+    revision="1",
+    release_date="2026-01-15",
+    languages=None,
+    loader=VoyagePromptTestModel,
+    loader_kwargs=dict(
+        max_tokens=32000,
+        model_prompts=model_prompts,
+        api_model_name="voyage-4",
+    ),
+    max_tokens=32000,
+    embed_dim=1024,
+    open_weights=False,
+    n_parameters=None,
+    memory_usage_mb=None,
+    license=None,
+    reference="https://blog.voyageai.com/2026/01/15/voyage-4/",
+    similarity_fn_name="cosine",
+    framework=["API"],
+    use_instructions=True,
+    training_datasets=VOYAGE_TRAINING_DATA,
+    public_training_code=None,
+    public_training_data=None,
+)
+
+# voyage-4-lite for prompt evolution experiments
+voyage_4_lite_prompt_test = ModelMeta(
+    name="voyageai/voyage-4-lite-prompt-test",
+    model_type=["dense"],
+    revision="1",
+    release_date="2026-01-15",
+    languages=None,
+    loader=VoyagePromptTestModel,
+    loader_kwargs=dict(
+        max_tokens=32000,
+        model_prompts=model_prompts,
+        api_model_name="voyage-4-lite",
+    ),
+    max_tokens=32000,
+    embed_dim=1024,
     open_weights=False,
     n_parameters=None,
     memory_usage_mb=None,

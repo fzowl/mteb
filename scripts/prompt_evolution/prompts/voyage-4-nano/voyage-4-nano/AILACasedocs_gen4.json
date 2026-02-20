@@ -1,0 +1,35 @@
+{
+  "query_prompts": [
+    "Query legal: {text}",
+    "Case law: {text}",
+    "Legal ref: {text}",
+    "Rule ask: {text}",
+    "Statute: {text}",
+    "Law ref: {text}",
+    "Court see: {text}",
+    "Doc query: {text}",
+    "Case find: {text}",
+    "Ask doc: {text}",
+    "Query law: {text}",
+    "Find law: {text}",
+    "Legal ask: {text}",
+    "Law query: {text}"
+  ],
+  "corpus_prompts": [
+    "Law excerpt: {text}",
+    "Legal content: {text}",
+    "Case detail: {text}",
+    "File text: {text}",
+    "Judgment doc: {text}",
+    "Ruling info: {text}",
+    "Court text: {text}",
+    "Legal details: {text}",
+    "Precedent file: {text}",
+    "Court note: {text}",
+    "Precedent account: {text}",
+    "Court verdict: {text}",
+    "Case law excerpt: {text}",
+    "Verdict text: {text}",
+    "Case document: {text}"
+  ]
+}

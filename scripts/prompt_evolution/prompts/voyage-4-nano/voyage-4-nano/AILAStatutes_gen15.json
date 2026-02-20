@@ -1,0 +1,33 @@
+{
+  "query_prompts": [
+    "Instruct: Search for applicable legal framework\nQuery: {text}",
+    "Instruct: Analyze to uncover legal statutes\nQuery: {text}",
+    "Instruct: Find applicable statutes and case laws\nQuery: {text}",
+    "Instruct: Explore statutory provisions related to\nQuery: {text}",
+    "Inquire about legal obligations for: {text} \u2014 state findings",
+    "Instruct: Investigate relevant statutes\nQuery: {text}",
+    "Instruct: Evaluate the legal statutes concerning\nQuery: {text}",
+    "Query: {text} \u2014 identify applicable legislation",
+    "Enquire about potential legal conflicts in: {text}",
+    "Analyze legal necessities for: {text} \u2014 report findings",
+    "Instruct: Match legal frameworks to this query: {text}",
+    "Instruct: Find laws that apply to the case\nQuery: {text}",
+    "Instruct: Locate applicable legal statutes\nQuery: {text}"
+  ],
+  "corpus_prompts": [
+    "Contextual overview of legal statutes: {text}",
+    "Descriptive analysis of statutory provisions: {text}",
+    "Elaborated text on legislative guidelines: {text}",
+    "Comprehensive perspective on legal content: {text}",
+    "Examination of statutory obligations within: {text}",
+    "Document analysis for statutory context: {text}",
+    "Review document for applicable statutes: {text}",
+    "Regulatory documentation summary: {text}",
+    "Detailed report on legislative guidelines: {text}",
+    "Compilation of expert legal insights: {text}",
+    "Document with statutory annotations: {text}",
+    "Review of statutory framework for context: {text}",
+    "Statutory framework analysis: {text}",
+    "Legal background document \u2014 provisions detailed: {text}"
+  ]
+}

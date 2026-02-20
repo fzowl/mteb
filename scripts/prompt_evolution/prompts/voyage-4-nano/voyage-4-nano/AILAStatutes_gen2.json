@@ -1,0 +1,36 @@
+{
+  "query_prompts": [
+    "Retrieve legal codes related to the following issue: {text}",
+    "Guidance needed: Reveal legal statutes relevant to {text}",
+    "Instruct: Identify governing statutory provisions\nRequest: {text}",
+    "Pinpoint statute implications for: {text}",
+    "Find applicable legal frameworks based on: {text}",
+    "Provide statutory context for the scenario: {text}",
+    "Assess legal requirements for: {text} \u2014 identify necessary statutes",
+    "Instruct: Discover binding legislative frameworks\nQuery: {text}",
+    "Instruct: Specify legal provisions relevant to the case\nQuery: {text}",
+    "Instruct: Analyze the case details to locate applicable statutes: {text}",
+    "Instruct: Match legal statute provisions\nQuery: {text}",
+    "Instruct: Identify legal statutes for the given case\nQuery: {text}",
+    "Instruct: Locate applicable legal statutes\nQuery: {text}",
+    "Instruct: Match legal frameworks to this query: {text}"
+  ],
+  "corpus_prompts": [
+    "Descriptive account of legislative provisions: {text}",
+    "Document with articulated legal statutes: {text}",
+    "Complete legal statute outline: {text}",
+    "Synopsis of statutory document content: {text}",
+    "Comprehensive directory of legislative articles: {text}",
+    "Analysis of legal obligations outlined in: {text}",
+    "Document with detailed record of legal statutes: {text}",
+    "Compilation of legal definitions found in: {text}",
+    "Legal background document \u2014 provisions detailed: {text}",
+    "Recorded explanations of statutory guidelines: {text}",
+    "Comprehensive legal provisions are found here: {text}",
+    "Legal guidelines within: {text}",
+    "Legal document description: {text}",
+    "Examine statutory content here: {text}",
+    "Identified legal content: {text}",
+    "Legislative document details: {text}"
+  ]
+}

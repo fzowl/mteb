@@ -1,0 +1,33 @@
+{
+  "query_prompts": [
+    "Instruct: Cross-reference statutes\nQuery: {text}",
+    "Locate legal guidelines for analysis: {text}",
+    "Instruct: Compile statutory relevance\nQuery: {text}",
+    "Instruct: Explore legal implications for: {text}",
+    "Directive: Unravel legal intricacies for: {text}",
+    "Inquire about statutory enforcement: {text}",
+    "Find legal connections for: {text}",
+    "Search legal precedents applicable to: {text}",
+    "Examine legal context for: {text}",
+    "Analyze regulatory framework concerning: {text}",
+    "Instruct: Locate applicable legal statutes\nQuery: {text}",
+    "Instruct: Match legal frameworks to this query: {text}",
+    "Instruct: Find laws that apply to the case\nQuery: {text}"
+  ],
+  "corpus_prompts": [
+    "Contextual analysis of statutory text: {text}",
+    "Document offering legislators' perspective: {text}",
+    "Examination of legal context: {text}",
+    "Comprehensive statutory exploration: {text}",
+    "Catalog of legal articles provided: {text}",
+    "Annotations of legal provisions: {text}",
+    "Collated statutory interpretations: {text}",
+    "Dismissal of non-relevant legal frameworks: {text}",
+    "In-depth legal reasoning documented: {text}",
+    "Structured synopsis of legislative context: {text}",
+    "Documentation exploring statutory contents: {text}",
+    "Legal background document \u2014 provisions detailed: {text}",
+    "Review of statutory framework for context: {text}",
+    "Explore documentation of legal frameworks: {text}"
+  ]
+}

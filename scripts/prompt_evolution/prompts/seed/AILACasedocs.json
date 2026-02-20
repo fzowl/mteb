@@ -1,27 +1,28 @@
-[
-  "",
-  "Based on the details provided, retrieve related legal precedents for reference",
-  "Given a legal situation, find relevant court case documents that align with the facts",
-  "For the scenario described, search for precedents that can offer potential resolutions",
-  "Locate court case documents demonstrating analogous legal reasoning for the situation",
-  "Identify case documents that precisely match the legal query to ensure accurate referencing",
-  "Using the given scenario, discover legal cases that provide contextually relevant insights",
-  "Fetch case documents with high semantic similarity to maximize reliable case analysis",
-  "Obtain case precedents focusing on technical precision within the described scenario",
-  "Surface legal documents that involve similar legal principles and outcomes",
-  "Retrieve court documents with potentially impactful interpretations for the current legal question",
-  "For the specified case facts, search for court rulings that set relevant legal precedents",
-  "Based on the outlined facts, match documents demonstrating comparable legal frameworks",
-  "Find legal documents that emphasize relevant statutory interpretations for comprehensive citation",
-  "Given the scenario, obtain legal documents revealing interpretive nuances of case law",
-  "Identify documents that provide comprehensive legal answers respecting the scenario described",
-  "Explore court documents ensuring broad coverage yet focused relevance",
-  "Discover case documents highlighting pertinent procedural aspects of the scenario",
-  "For the described legal issue, fetch documents offering profound jurisprudential insights",
-  "Locate documents balancing comprehensive recall with precise relevance to the case",
-  "Search for case law that exemplifies critical legal reasoning akin to the situation",
-  "Employ semantic matching to draw parallels with legal precedents in similar circumstances",
-  "Using provided context, identify cases evidencing parallel legal doctrines in action",
-  "Based on the facts, obtain documents that emphasize exact statutory language discussed",
-  "Retrieve court documents reflecting analogous judicial outcomes for the defined legal issue"
-]
+{
+  "query_prompts": [
+    "{text}",
+    "Retrieve related legal precedents for: {text}",
+    "Find relevant court case documents that align with: {text}",
+    "Search for precedents that can offer potential resolutions for: {text}",
+    "Locate court case documents demonstrating analogous legal reasoning for: {text}",
+    "Identify case documents that precisely match the legal query: {text}",
+    "Discover legal cases that provide contextually relevant insights for: {text}",
+    "Fetch case documents with high semantic similarity to: {text}",
+    "Surface legal documents that involve similar legal principles to: {text}",
+    "Retrieve court documents with relevant interpretations for: {text}",
+    "Find legal documents emphasizing relevant statutory interpretations for: {text}",
+    "Instruct: Retrieve relevant legal case documents\nQuery: {text}",
+    "Search for case law exemplifying critical legal reasoning for: {text}"
+  ],
+  "corpus_prompts": [
+    "{text}",
+    "Legal case document: {text}",
+    "Court case ruling: {text}",
+    "Legal precedent document: {text}",
+    "Case law excerpt: {text}",
+    "Judicial ruling: {text}",
+    "Court document: {text}",
+    "Legal case text: {text}",
+    "Case document content: {text}"
+  ]
+}

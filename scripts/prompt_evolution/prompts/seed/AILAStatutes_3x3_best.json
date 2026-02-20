@@ -1,0 +1,13 @@
+{
+  "query_prompts": [
+    "{text}",
+    "Find relevant statutes for: {text}",
+    "Instruct: Match legal statute provisions\nQuery: {text}"
+  ],
+  "corpus_prompts": [
+    "{text}",
+    "Legal statute: {text}",
+    "Legislative provision: {text}"
+  ],
+  "_note": "These 3x3 prompts produced best score 0.531 (Q: Instruct: Match legal statute provisions\\nQuery: {text} + C: Legal statute: {text})"
+}
